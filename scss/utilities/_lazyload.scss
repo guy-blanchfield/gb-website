@@ -1,0 +1,13 @@
+@use 'abstracts';
+
+// probably don't want to apply background colours to all lements that we might end up using the .lazy class on
+// so force this specifically for images with the lazy class
+
+img.lazy {
+
+    background-color: abstracts.$lightmidgrey;
+    // hide alt text
+    color: transparent;
+
+}
+

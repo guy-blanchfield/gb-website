@@ -1,0 +1,185 @@
+@use 'abstracts';
+
+
+// contact-container was an auto-fit grid with 2 columns for large screens
+// and 1 column for smaller screens, but now is just a one big column affair
+
+
+// gonna stick this variable here and not in _variables b/c it's specific to the contact form
+// 525 = 3/8 of 1400 container max-width
+$input-width: 525px;
+
+.contact-form {
+  // just a bit of top margin, so we don't need so much top margin on the labels
+  margin-top: 1rem;
+}
+
+.contact-label {
+
+  display: block;
+  margin: 1rem 0 0 0;
+  color: abstracts.$darkergrey;
+
+}
+
+.contact-input {
+
+  // min-width here or the inputs have a tendency to go really small
+  min-width: min(88vw, $input-width); // 525 = 3/8 of 1400 container max-width
+  padding: 0.75rem;
+  border: 1px solid abstracts.$midgrey;
+  border-radius: 0.25rem;
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem; // was 1rem, smaller now b/c error messages below input
+  resize: vertical; // allow the user to vertically resize the textarea (not horizontally)
+
+  &:focus {
+    outline: 2px solid abstracts.$color-primary;
+  }
+}
+
+
+
+// select with pseudo and attribute just to be on the safe side
+// .contact-submit:enabled, .contact-submit[enabled] { - now using classes instead of attribute
+.contact-submit {
+
+  background-color: abstracts.$color-primary;
+  color: abstracts.$white;
+
+  padding: 0.75rem 1.25rem;
+  border: none;
+  border-radius: 0.25rem;
+
+  // trying this full width of the form
+  // same width setup as the inputs so it matches, except nax-width instead of min-width
+  min-width: min(88vw, $input-width);
+  // min-height needs to cover the loading animation (2rem) plus the padding (0.75rem * 2)
+  min-height: calc(1.5rem + 2rem);
+
+  opacity: 1;
+  visibility: visible;
+
+  // text-transform: uppercase; - bit aggressive!
+  cursor: pointer;
+
+  @include abstracts.hocus {
+    outline: none;
+    background-color: scale-color(
+      $color: abstracts.$color-primary,
+      $lightness: -25%
+    );
+  }
+
+}
+
+.contact-submit.disabled {
+
+  // greyed out until recaptcha is solved (disabled attribute = true)
+  background-color: scale-color(abstracts.$lightmidgrey, $lightness: -5%);
+  color: scale-color(abstracts.$midgrey, $lightness: -10%);;
+
+  cursor: auto;
+  
+  
+}
+
+.contact-submit[data-visible='false'] {
+
+  // transform: scale(0);
+  // needs opacity to do the the transition, visibility only just disappears without fading
+  opacity: 0;
+  // needs visibilty to stop it being clickable
+  visibility: hidden;
+
+}
+
+.contact-error {
+  color: abstracts.$color-error;
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin-bottom: 0.75rem;
+  // display block so we can set min-height
+  // and so it doesn't flow to the right of the input (at least for now!)
+  display: block;
+  min-height: 1.5rem;
+}
+
+.contact-success {
+
+  // flex so we can vertically align center
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  background-color: abstracts.$color-primary;
+  color: abstracts.$white;
+  text-align: center;
+  padding: 0.75rem 1.25rem;
+  border: none;
+  border-radius: 0.25rem;
+
+  // same width setup as the inputs so it matches, except nax-width instead of min-width
+  max-width: min(88vw, $input-width);
+  // same height setup as the submit button
+  min-height: calc(1.5rem + 2rem);
+
+  //position: relative;
+  //top: -4rem;
+  transform: translateY(-100%);
+
+  // needs visibilty to stop it interfering with the submit button
+  visibility: hidden;
+  // needs opacity so it transitions
+  opacity: 0;
+  // maybe try scale, so it pops
+  // transform: scale(0);
+  // try without the delay, now that the button and the message are the same size and position
+  // transition-delay: 0.5s;
+
+}
+
+.contact-success[data-visible='true'] {
+
+  visibility: visible;
+  opacity: 1;
+  // maybe try scale, so it pops
+  // nah, see https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/scale#accessibility_concerns
+  // transform: translateY(-100%) scale(1);
+}
+
+// all the following was in utilities/label-required
+// but now it's only styling the required asterisk so put it here
+// with all the comments for reference - something to think about
+
+// hmmm see https://accessibleweb.com/question-answer/how-is-css-pseudo-content-treated-by-screen-readers/
+// after not recommended!
+// on their contact form they had the asterisk as content
+// followed by <span class="sr-only">required</span>
+
+// so maybe just use a class to style the asterisk, maybe with an aria-hidden
+.label-required {
+  color: abstracts.$color-error;
+  font-size: 0.75em;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+// see utilities for label-required class
+
+// some styles for the valid and invalid pseudo classes
+// for use with html5 input validation
+
+// remember though that inputs / textareas are invalid as soon as the page
+// loads, becuse their value is empty
+
+// NB focus stuff uses outline - this is using border
+
+// input:invalid,
+// textarea:invalid {
+//     border: 2px dashed red;
+// }
+
+// input:valid {
+//     border-color: scale-color($color: abstracts.$midgrey, $lightness: -25%);
+// }

@@ -1,0 +1,52 @@
+@use 'abstracts';
+
+/* base transition rule for all style changes */
+// NB this may cause problems, and may need overriding in some instances
+* {
+  transition: all ease-in-out 250ms;
+
+  // scrollbars
+  @include abstracts.scrollbars(
+    $foreground-color: abstracts.$darkmidgrey,
+    $background-color: abstracts.$lightgrey
+  );
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+// use body not *, see: https://softwareengineering.stackexchange.com/questions/178049/css-use-universal-selector-vs-html-or-body-selector/178072
+body {
+  // font-family: 'open_sans';
+  // font-family: 'roboto';
+  // font-family: 'nimbus_sans';
+  font-family: 'tex_gyre_heros', Arial, Helvetica, sans-serif;
+  background: abstracts.$white;
+  color: abstracts.$black;
+
+  // just to make sure the mobile nav is properly hidden
+  overflow-x: hidden;
+}
+
+// from https://css-tricks.com/having-fun-with-link-hover-effects/
+
+// NB stick to pixel values, auto not safe apparently
+// see https://developer.mozilla.org/en-US/docs/Web/CSS/background-size#working_with_gradients
+a {
+  background: linear-gradient(
+    to bottom,
+    abstracts.$color-primary 0%,
+    abstracts.$color-primary 100%
+  );
+  background-position: 0 100%;
+  background-repeat: repeat-x;
+  background-size: 4px 0px;
+  color: abstracts.$black;
+  text-decoration: none;
+  transition: background-size 0.5s;
+}
+
+a:hover {
+  background-size: 4px 50px;
+}

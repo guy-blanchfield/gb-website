@@ -1,0 +1,25 @@
+// https://stackoverflow.com/questions/19758598/what-is-sr-only-in-bootstrap-3
+// nb this is a bootstrap class so be aware if you start using bits of bootstrap
+
+// show to screen readers, hide by putting offscreen
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
+}
+
+// see also .visually-hidden
+// https://www.accessibility-developer-guide.com/examples/forms/required/
+
+// .visually-hidden {
+//     position: absolute;
+//     width: 1px;
+//     height: 1px;
+//     left: -10000px;
+//     overflow: hidden;
+//   }

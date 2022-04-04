@@ -1,0 +1,179 @@
+@use 'abstracts';
+
+// article header {
+//     border:1px solid pink;
+// }
+
+.article-work {
+  // border: 1px solid red;
+
+  // now uses utility grid class
+  // display: grid;
+  // see utilities/_flex.scss for --gap info
+  // --gap: 2em;
+  row-gap: 0rem;
+  column-gap: 2rem;
+  // grid-template-columns: repeat(auto-fit, 450px);
+  // grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(88vw, 300px), 1fr));
+  // grid-template-columns: 50px 1fr;
+
+  margin: 3rem 0;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid abstracts.$darkmidgrey;
+
+  img {
+    //max-width: 450px;
+    height: auto;
+    border: 1px solid abstracts.$midgrey;
+  }
+
+  p {
+    font-size: 1.25rem;
+    color: abstracts.$darkgrey;
+    // color: abstracts.$darkergrey;
+  }
+
+  header p {
+    font-size: 0.8rem;
+    color: abstracts.$darkmidgrey;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    margin-top: 1rem;
+  }
+}
+
+// a .article-work:hover h3 {
+//   color: abstracts.$darkgrey;
+// }
+
+a .article-work:hover p {
+  color: abstracts.$black;
+}
+
+a .article-work:hover header p {
+  color: abstracts.$darkgrey;
+}
+
+a .article-work:hover img {
+  border: 1px solid abstracts.$darkmidgrey;
+}
+
+// .article-work-content {
+
+// width: 400px;
+// background-color: pink;
+
+//}
+
+.article-about {
+  // border: 1px solid yellow;
+
+  // now uses utility grid class
+  // display: grid;
+  // see utilities/_flex.scss for --gap info
+  // --gap: 2em;
+  row-gap: 2em;
+  // could hav a min() here
+  column-gap: 18rem;
+  // grid-template-columns: repeat(auto-fit, 450px);
+  //grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(88vw, 300px), 1fr));
+  // grid-template-columns: 50px 1fr;
+
+  img {
+    //max-width: 450px;
+    height: auto;
+  }
+
+  h3 {
+    margin-top: 2.33rem;
+    // margin-top: 2.25rem;
+    // either adjust the margin-top a bit or add line-height
+    // to match the .article-intro
+    // line-height: 2.5rem; // nope
+  }
+
+  h4 {
+    font-size: 0.75rem;
+    margin-top: 2rem;
+    color: abstracts.$darkmidgrey;
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
+  }
+
+  // p {
+
+  // }
+
+  // em {
+
+  //     // font-size: 1.5em;
+  //     color: abstracts.$darkgrey;
+
+  // }
+}
+
+.article-intro {
+  // color: abstracts.$darkgrey;
+  // min-width: 500px;
+  font-size: 2rem;
+  letter-spacing: -0.02rem;
+  line-height: 2.5rem;
+  // bit of padding-bottom to keep it away from the other paras
+  // so there's more of a gap than between the body paras
+  // (margin won't do it)
+  padding-bottom: 1rem;
+  // font-weight: bold;
+}
+
+.article-body {
+  color: abstracts.$darkgrey;
+  font-size: 1.2rem;
+  line-height: 2rem;
+}
+
+.article-about-skills-education {
+  // universal 1rem should be fine
+  // there's plenty of margin-top on the h3s
+  // --gap: 2rem;
+  // leave this to be column at all times
+  // maybe rethink some other time, but for now it's holding up
+  // better than any other options
+  flex-direction: column;
+
+  // row-gap: 2rem;
+  // column-gap: 10rem;
+  // flex-wrap: wrap;
+
+  // justify not gonna work (at least not with row), align-content stick it to the bottom so nope
+  // justify-content: flex-end;
+  // align-content: flex-end;
+}
+
+.article-about-skills ul {
+  color: abstracts.$darkgrey;
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0 0 0;
+
+  li {
+    margin: 0.5rem 0;
+    // padding-left: 2.5rem;
+  }
+
+  li::before {
+    // content: "• ";
+    // \00a0 is nbsp
+    content: '\2022 \00a0 ';
+    color: abstracts.$midgrey;
+  }
+}
+
+.article-about-skills p,
+.article-about-education p {
+  // just stick the max-width on here for now
+  // maybe put on the parent div eventually
+  // max-width: 300px;
+  margin-top: 0.5rem;
+}

@@ -1,0 +1,213 @@
+// https://www.youtube.com/watch?v=HbBMp6yUXO0
+
+@use '../abstracts';
+
+// .main-nav {
+
+// }
+// maybe the toggle button should be in header?
+// anyway, nav will do for now
+.mobile-nav-toggle {
+  display: none;
+}
+
+.main-nav-list {
+  // this list reset could be done with a utility class
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  // doesn't reall need any gap here because of the padding on the links
+  // but give it a little bit for luck
+  // set it column gap, so it doesn't affect the mobile nav
+  column-gap: 0.1rem;
+  //--gap: 0.1rem;
+  // overrides universal transition rules
+  transition-duration: 0s;
+}
+
+.main-nav-list li a {
+  // color: abstracts.$black;
+  color: abstracts.$darkgrey;
+  text-decoration: none;
+  // default display of inline should be fine, padding should still work
+  display: inline-block;
+  position: relative;
+  padding: 0.25em 1em;
+  // override universal link behaviour
+  background: none;
+
+  &.active {
+    // for the current section
+    // needs intersection observer - not done yet!
+    // color: abstracts.$black;
+    color: abstracts.$darkergrey;
+  }
+
+  @include abstracts.hocus {
+    outline: none;
+    // color: abstracts.$black;
+    // color: abstracts.$darkgrey;
+    // color: abstracts.$color-primary;
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    //left: var(--spacing);
+    //right: var(--spacing);
+    left: 1em; // these need to be the same as the horizontal padding value of the a
+    right: 1em;
+    height: 2px;
+    // background: abstracts.$darkgrey;
+    background: abstracts.$color-primary;
+    transform: scaleX(0);
+    transition: transform 150ms ease-in-out;
+  }
+
+  &:hover::after,
+  &:focus::after {
+    transform: scaleX(1);
+  }
+
+  /*
+        @include abstracts.hocus {
+
+            color: abstracts.$black;
+            // color: abstracts.$darkgrey;
+            // color: abstracts.$color-primary;
+        } 
+        
+  */
+}
+
+@include abstracts.small-screen {
+  .main-nav-list {
+    // see utilities/_flex.scss for --gap info
+    // let this default (1rem)
+    // --gap: 2em;
+
+    // nah, no gap so the link takes up all the space
+    --gap: 0;
+    // and put the top border on the list
+    // so the links just need bottom border
+    // and we don't need any fancy child selectors
+    // not gonna work - the list is the whole thing!!!
+    // border-top: 1px solid abstracts.$midgrey;
+
+    position: fixed;
+    // just in case the nav has z-index issues
+    z-index: 1000;
+    // iset (top right bottom left - in a ltr system that is)
+    inset: 0 0 0 6%;
+    // inset: 0;
+    // main-nav-list aready has flex: display so we can change its direction here
+    flex-direction: column;
+    // using min function here just in case some weirdo decides
+    // to view in landscape on a phone
+    // min() takes the smaller of the 2 values
+    // also has to be padding, not margin - the list is the whole thing!
+    padding: min(30vh, 5rem) 2rem;
+    // hsl NB! first value (hue) not a percentage!
+    // background: hsl(0 0% 0% / 0.8);
+    // background: rgba(abstracts.$white, 0.90);
+    background-color: abstracts.$white;
+    // backdrop-filter blur doesn't work on firefox, put it in a @supports
+    // @supports (backdrop-filter: blur(1rem)) {
+    //     backdrop-filter: blur(1rem);
+    // }
+
+    transform: translateX(100%);
+    transition: transform 350ms ease-in-out;
+  }
+
+  .main-nav-list[data-visible='true'] {
+    transform: translateX(0%);
+
+    // from turnwall.com - the left shadow thing
+    // right: 0;
+    // box-shadow: -60px 0 60px 30px rgba(0, 0, 0, 0.25); // orig values
+    box-shadow: -20px 0 20px 10px rgba(0, 0, 0, 0.25);
+  }
+
+  /*
+  .main-nav-list li {
+    // border-top: 1px solid abstracts.$midgrey;
+    // padding-top: 1rem;
+    // padding-bottom: 1rem;
+    // padding: 1rem 0;
+    // background-color: aqua;
+  }
+  */
+
+  /*
+  .main-nav-list li:last-child {
+    border-bottom: 1px solid abstracts.$midgrey;
+    padding-bottom: 1rem;
+    // border-top: 2px solid abstracts.$midgrey;
+    // padding-top: 1rem;
+  }
+  */
+
+  // just gonna need the top border on the first li
+  .main-nav-list li:first-child {
+    border-top: 1px solid abstracts.$midgrey;
+  }
+
+  // remove the padding (used for the hover effect) for mobile nav
+  // .main-nav-list li a {
+  // padding: 0;
+  // }
+
+  // make the a fill the whole li
+  .main-nav-list li a {
+    width: 100%;
+    height: 100%;
+    // background-color: pink;
+    // put the padding and borders on link instead of the li
+    // so the whole thing's tappable
+    border-bottom: 1px solid abstracts.$midgrey;
+    padding: 1rem 0 1rem 1rem;
+  }
+
+  // remove the ::after hover effect for mobile nav
+  .main-nav-list li a::after {
+    content: none;
+  }
+
+  .mobile-nav-toggle {
+    display: block;
+    position: absolute;
+    // king of z-indexes - above everyone else
+    z-index: 9999;
+    // probably gonna have to be an fa icon for the hamburger
+    //background: url('../../assets/vendor/fontawesome/svgs/solid/bars.svg');
+    //background-repeat: no-repeat;
+    border: 0;
+    //background-color: abstracts.$white;
+
+    // gets reall ugly if font-size is increased so leave ti as is
+    // font-size: 1rem;
+    color: abstracts.$darkgrey;
+    background-color: transparent;
+
+    width: 2rem;
+    aspect-ratio: 1;
+    top: 1.4rem;
+    right: 1.6rem;
+    // tried a mask-image for the svg - no!
+  }
+  // for background-image svg method
+  // (probably do this in the js, given we're using fa icon classes
+  // included here just for reference)
+
+  // .mobile-nav-toggle[aria-expanded="true"] {
+  //     background: url('../../assets/vendor/fontawesome/svgs/solid/xmark.svg');
+  // }
+}
+
+// .main-nav-list li {
+
+//     padding: 0 0.5rem;
+
+// }

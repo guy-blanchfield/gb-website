@@ -1,0 +1,15 @@
+// maybe the container should go in utilities
+// but its controlling the layout so...?
+
+// tried in layout, come too late and overrides stuff
+
+// anyway it's  container with a max-width and margin: auto
+// that sits inside the main page elements (e.g. header, main (maybe section?), footer if we have one) to control the width and centring
+.container {
+
+    width: 88vw; // keeps everything away from the edges
+    margin: 0 auto; // centres
+    padding: 0;
+    max-width: 1400px; // stops it getting too wide on large screens
+
+}

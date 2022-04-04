@@ -1,0 +1,91 @@
+@use 'abstracts';
+
+// could use something like section > .container here
+// instead of an explicit class name, but for readability and convenience use a specific class
+.section-container {
+  // border: 1px solid blue;
+  // tried hrs instead of border-styling, too much hassle
+  // to get them to span the grid (grid columns change with @media query!)
+  border-top: 3px solid abstracts.$black;
+
+  @include abstracts.large-screen {
+    // grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-template-columns: 100px 1fr;
+    // height: auto;
+  }
+}
+
+.section-header {
+  // background-color: aqua;
+  // set height so that the sticky header doesn't go all the way
+  // to the bottom of the section content (the adjacent grid column)
+  height: 92.5%;
+}
+
+// put this h2 here for now
+// it's not really typography for the h2, more about controlling its layout behaviour
+// (the horizontal, vertical, rotate sticky thing)
+
+.section-container h2 {
+  margin-top: 1rem;
+  //padding: 0;
+  //transform-origin: bottom left;
+  //background-color: magenta;
+
+  // turnwall colour #242929;
+
+  // overrides universal transition rules
+  transition-duration: 0s;
+
+  @include abstracts.large-screen {
+    position: sticky;
+    // top needs to be more than the height of the sticky header (currently 5rem + 1.5 shadow)
+    // it seems to be like a min value, doesn't change its starting point
+
+    // 3 maybe? depends whether you mind it being partially hidden
+    // by the sticky header
+    // needs 6, 5 was a bit tight to the sticky header
+    // remember, this doesn't affect its starting position
+    top: 6rem;
+    //width: 100px;
+    //height: 200px;
+    // height: 1000px;
+    transform: rotate(90deg);
+    transform-origin: top left;
+    // top right bottom left are all out of whack once it's rotated
+    // trial and error for the positioning
+    // border: 1px solid cyan;
+    // background-color: rgb(204, 204, 204);
+
+    // maybe not have it aligned with the top of the content
+    // maybe push it down a bit, looks a bit uptight
+    // seems to be margin-top??!
+    margin: 5rem 5rem 0rem 2rem;
+    // padding-right: 20rem;
+  }
+}
+
+// lose the hrs they're not worth it
+/*
+.section-container hr {
+// .section-hr {
+
+    // starts at column 1 ends column 3 (i guess that means what would be the start of column 3)
+    grid-column: 1 / 2;
+    // border-top: 3px solid abstracts.$black;
+    // margin will default to auto, which will fill the space in a grid or flex item
+    // causing the hr width to be 0, set margin needs to be explicitly set
+    // (to something other than auto!)
+    margin: 0;
+    //align-self: stretch;
+    border: 0;
+    //width: 200px;
+    height: 5px;
+    background: abstracts.$black;
+
+} 
+*/
+
+section {
+  margin: 4rem 0;
+}

@@ -1,0 +1,80 @@
+// https://www.youtube.com/watch?v=jDDaOFr9nqQ
+
+@use 'abstracts';
+
+// just going to give the main page header the class name 'header'
+// remember to give other headers a different class if you give them class names
+
+// NB if you're looking for the h1, it's in _logo.scss, class name .logo-text
+
+.header {
+  // visibility: hidden;
+  // for the semi sticky scroll hide thing
+  // maybe put this in a media query depending on whether you go mobile first
+  // (alex turnwall site doesn't have the scroll hide nav thing in small or medium modes)
+  // it's going to need a background if it's going to be sticky
+  background-color: abstracts.$white;
+  // nb on alex turnwall site border darkens as it unhides!
+  border-bottom: 1px solid abstracts.$midgrey;
+  // set a height just to see what's what
+  height: 5rem;
+
+  position: fixed; /* Make it stick/fixed */
+  top: 0; /* Stay on top */
+  z-index: 1000; // sits on top of most things - keep this, seriously
+  width: 100%; /* Full width */
+  transition: top 1s; /* Transition effect when sliding down (and up) */ // (was 0.3s) also wants ome ease in or out
+}
+
+// gets added / removed in hideheader.js
+.hideheader {
+  // if you want a none pixel value for this use whatever height you set the header to eventually
+  // alternatively, do all this with a container div within header and it should be able to get height from its parent
+  // top: -50px;
+  top: -6.5rem; // bit more to cover the drop shadow
+  // box-shadow: none; - not going to work beacause the stickyheader class will overide it
+}
+
+.stickyheader {
+  // from https://stackoverflow.com/questions/4561097/css-box-shadow-bottom-only
+  // It's actually much simpler, whatever you set the blur to (3rd value), set the spread (4th value) to the negative of it.
+
+  // probably don't need to worry about the top shadow b/c header position top is 0
+
+  // box-shadow: 0px 20px 10px -15px abstracts.$midgrey;
+  // box-shadow: 0px 2px 20px abstracts.$midgrey;
+  // values from turnwall.com
+  // box-shadow: 0 0 1.5rem #00000033;
+  // from kevin powell's intersection observer navigation style video
+  // box-shadow: 0 3px 20px rgba(black, 0.2);
+  // best of both worlds
+  box-shadow: 0 0 1.5rem rgba(abstracts.$black, 0.2);
+}
+
+.header-container {
+  // header container already has flex utility class so specific flex rules can go here
+  justify-content: space-between;
+  // align-content: center;
+  padding-top: 1.5rem;
+  // padding: 2rem 0 0 0;
+}
+
+.skip-to-main-link {
+  color: abstracts.$white;
+  background: black;
+  text-decoration: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0 0 0.25rem 0.25rem;
+
+  // z-index: so it's above the fa icon logo (fa-stack has z-index rules)
+  z-index: 9998;
+  position: absolute;
+  left: 0.5rem;
+  transform: translateY(-120%);
+  // do a global value for all transitions? mixin? on html? *wildcard?
+  transition: transform 325ms ease-in;
+}
+
+.skip-to-main-link:focus {
+  transform: translateY(0);
+}

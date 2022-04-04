@@ -1,0 +1,12 @@
+// flex utitilty class
+// https://youtu.be/HbBMp6yUXO0?t=272
+
+.flex { 
+    display: flex;
+    // --gap is custom property not yet defined, fallback is 1rem
+    // --gap can be set for spefic instances where necessary
+
+    // where you want to overide the default, set gap property like this:
+    // --gap: 0.5rem;
+    gap: var(--gap, 1rem);
+}

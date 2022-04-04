@@ -1,0 +1,9 @@
+// trying something similar to flex utitilty class
+// https://youtu.be/HbBMp6yUXO0?t=272
+
+.grid { 
+    display: grid;
+    // --gap is custom property not yet defined, fallback is 1rem
+    // --gap can be set for spefic instances where necessary
+    gap: var(--gap, 1rem);
+}

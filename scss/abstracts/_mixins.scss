@@ -1,0 +1,87 @@
+// not sure we need  the @use variables here
+// if we're @using 'abstracts' everywhere anyway
+
+// yes we very much do need to use variables here
+
+@use 'variables';
+
+// large-screen and small-screen mixins for now
+// b/c i'm not sure which way we're going
+// decide later whether it's mobile first or large screen first
+
+// $large-screen-min-width currently 750px
+@mixin large-screen {
+  @media (min-width: variables.$large-screen-breakpoint) {
+    @content;
+  }
+}
+
+@mixin small-screen {
+  @media (max-width: variables.$large-screen-breakpoint) {
+    @content;
+  }
+}
+
+@mixin tiny-screen {
+  @media (max-width: 420px) {
+    @content;
+  }
+}
+
+// pepelsbey's hocus mixin
+// https://gist.github.com/pepelsbey/a2bb3f6b44c4a4729dcc
+
+@mixin hocus {
+  &:hover,
+  &:focus {
+    @content;
+  }
+}
+
+// see also Harry Roberts on-event mixin
+/// Event wrapper
+/// @author Harry Roberts
+/// @param {Bool} $self (false) - Whether or not to include current selector
+/// @see https://twitter.com/csswizardry/status/478938530342006784 Original tweet from Harry Roberts
+@mixin on-event($self: false) {
+  @if $self {
+    &,
+    &:hover,
+    &:active,
+    &:focus {
+      @content;
+    }
+  } @else {
+    &:hover,
+    &:active,
+    &:focus {
+      @content;
+    }
+  }
+}
+
+// scrollbar stuff
+// see kevin powell https://www.youtube.com/watch?v=lvKK2fs6h4I
+// css-tricks https://css-tricks.com/the-current-state-of-styling-scrollbars-in-css/
+
+@mixin scrollbars(
+  $size: 10px,
+  // maybe use abstracts/colors for this
+  $foreground-color: #999,
+  $background-color: #333
+) {
+  // For Chrome & Safari
+  &::-webkit-scrollbar {
+    width: $size;
+    height: $size;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: $foreground-color;
+  }
+  &::-webkit-scrollbar-track {
+    background: $background-color;
+  }
+
+  // Standard version (Firefox only for now)
+  scrollbar-color: $foreground-color $background-color;
+}

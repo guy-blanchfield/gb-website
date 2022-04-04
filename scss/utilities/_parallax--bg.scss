@@ -1,0 +1,7 @@
+.parallax--bg {
+
+    // NB overides the  *{} transition rule in _base
+    // set it back to its original value
+    transition: initial;
+
+}

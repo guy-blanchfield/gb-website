@@ -1,0 +1,13 @@
+// index @forwards scss files in scss/abstracts
+
+// although the abstracts aren't outputting any css
+// they still need forwarding, so that other sass files
+// can @use 'abstracts' rather than having to @use each file
+// in abstracts explicitly
+// i.e. you're probably going to have to @use colors, mixins, variables etc
+// in every sass file, so @use 'abstracts' is easier
+
+@forward 'colors';
+@forward 'mixins';
+@forward 'type';
+@forward 'variables';

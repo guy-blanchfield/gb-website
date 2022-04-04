@@ -1,0 +1,10 @@
+// for the intersection observer fade-ins
+
+.fade-in {
+  opacity: 0.3;
+  transition: opacity 250ms ease-in;
+}
+
+.fade-in.appear {
+  opacity: 1;
+}

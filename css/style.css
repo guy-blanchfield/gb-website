@@ -1,0 +1,823 @@
+@charset "UTF-8";
+/* https://piccalil.li/blog/a-modern-css-reset */
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role=list],
+ol[role=list] {
+  list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+html {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
+/*
+$darkergrey: #333333;
+$darkgrey: #666666;
+// $darkmidgrey: #999999;
+$darkmidgrey: #aaaaaa;
+$midgrey: #cfcfcf;
+$lightgrey: #f2f2f2;
+*/
+/* base transition rule for all style changes */
+* {
+  transition: all ease-in-out 250ms;
+  scrollbar-color: #8c96a6 #f1f2f4;
+}
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-thumb {
+  background: #8c96a6;
+}
+*::-webkit-scrollbar-track {
+  background: #f1f2f4;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "tex_gyre_heros", Arial, Helvetica, sans-serif;
+  background: whitesmoke;
+  color: #21252b;
+  overflow-x: hidden;
+}
+
+a {
+  background: linear-gradient(to bottom, #169ef8 0%, #169ef8 100%);
+  background-position: 0 100%;
+  background-repeat: repeat-x;
+  background-size: 4px 0px;
+  color: #21252b;
+  text-decoration: none;
+  transition: background-size 0.5s;
+}
+
+a:hover {
+  background-size: 4px 50px;
+}
+
+/* =================== Font-face stuff ==================== */
+/* Tex Gyre Heros */
+/* normal, italic, bold, bold-italic */
+@font-face {
+  font-family: "tex_gyre_heros";
+  src: url("../../assets/fonts/texgyreheros-regular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "tex_gyre_heros";
+  src: url("../../assets/fonts/texgyreheros-italic-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: italic;
+}
+@font-face {
+  font-family: "tex_gyre_heros";
+  src: url("../../assets/fonts/texgyreheros-bold-webfont.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: "tex_gyre_heros";
+  src: url("../../assets/fonts/texgyreheros-bolditalic-webfont.woff") format("woff");
+  font-weight: bold;
+  font-style: italic;
+}
+h2 {
+  margin-top: 1rem;
+  font-size: 1.25rem;
+}
+
+h3 {
+  font-size: 2rem;
+  line-height: 2.25rem;
+  margin-top: 1rem;
+}
+
+p {
+  margin-top: 2rem;
+}
+
+.container {
+  width: 88vw;
+  margin: 0 auto;
+  padding: 0;
+  max-width: 1400px;
+}
+
+.flex {
+  display: flex;
+  gap: var(--gap, 1rem);
+}
+
+.grid {
+  display: grid;
+  gap: var(--gap, 1rem);
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.user-cannot-see {
+  display: none;
+}
+
+.note {
+  color: #596373;
+}
+
+img.lazy {
+  background-color: #e2e5e9;
+  color: transparent;
+}
+
+.parallax--bg {
+  transition: initial;
+}
+
+.fade-in {
+  opacity: 0.3;
+  transition: opacity 250ms ease-in;
+}
+
+.fade-in.appear {
+  opacity: 1;
+}
+
+.saturate-in {
+  filter: grayscale(0);
+}
+
+.saturate-in.saturate {
+  filter: grayscale(0);
+}
+
+.header {
+  background-color: whitesmoke;
+  border-bottom: 1px solid #c5cbd3;
+  height: 5rem;
+  position: fixed;
+  /* Make it stick/fixed */
+  top: 0;
+  /* Stay on top */
+  z-index: 1000;
+  width: 100%;
+  /* Full width */
+  transition: top 1s;
+  /* Transition effect when sliding down (and up) */
+}
+
+.hideheader {
+  top: -6.5rem;
+}
+
+.stickyheader {
+  box-shadow: 0 0 1.5rem rgba(33, 37, 43, 0.2);
+}
+
+.header-container {
+  justify-content: space-between;
+  padding-top: 1.5rem;
+}
+
+.skip-to-main-link {
+  color: whitesmoke;
+  background: black;
+  text-decoration: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0 0 0.25rem 0.25rem;
+  z-index: 9998;
+  position: absolute;
+  left: 0.5rem;
+  transform: translateY(-120%);
+  transition: transform 325ms ease-in;
+}
+
+.skip-to-main-link:focus {
+  transform: translateY(0);
+}
+
+a.logo-link {
+  color: #2c323a;
+  text-decoration: none;
+  background: none;
+}
+
+.logo {
+  flex-direction: row;
+  --gap: 0.25rem;
+}
+
+.logo-text {
+  margin: 0;
+  font-size: 1.25rem;
+  letter-spacing: -0.02rem;
+}
+
+.logo-icon {
+  margin-top: 0.25rem;
+  font-size: 0.8rem;
+  visibility: hidden;
+}
+
+.logo-icon.ready {
+  visibility: visible;
+}
+
+.logo-icon--inner {
+  color: whitesmoke;
+}
+
+.hero {
+  min-height: 63vh;
+  margin: 0;
+  border-bottom: 1px solid #c5cbd3;
+  /* // all of this stuff probably bollocks
+
+  // and a margin-top so that it clears the sticky header
+  // or maybe put the margin on the hero content
+  // margin-top: 5rem;
+
+  // because of the disappearing header, we ether need
+  // to make the header not disappear until we've scrolled down
+  // a bit further
+  // OR
+  // offset the hero's vertical position so it sits under the header
+  // basically sticks to the top of the page
+  // but preferably without fixing its position
+  // so try
+  //position: relative;
+  //top: -5rem;
+  // nah means the next section is 5rem further down than it should be
+  // position: absolute isn't helping either
+
+  // yeah that seems ok, but now header needs a z-index
+
+  */
+  background: linear-gradient(45deg, #e2e5e9, #f1f2f4);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.hero h2 {
+  margin: 12rem 0 0 0;
+  font-size: 4rem;
+  line-height: 4.5rem;
+  letter-spacing: -0.02em;
+  color: #21252b;
+}
+@media (max-width: 420px) {
+  .hero h2 {
+    font-size: 3rem;
+    line-height: 3.5rem;
+  }
+}
+
+.hero p {
+  margin: 1rem 0 0 0;
+  font-size: 2rem;
+  line-height: 2.5rem;
+  letter-spacing: -0.02em;
+}
+@media (max-width: 420px) {
+  .hero p {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+}
+
+.hero hr {
+  margin: 0;
+  height: 5px;
+  border: 0;
+  background-color: #21252b;
+}
+
+.article-work {
+  row-gap: 0rem;
+  column-gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(88vw, 300px), 1fr));
+  margin: 3rem 0;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid #8c96a6;
+}
+.article-work img {
+  height: auto;
+  border: 1px solid #c5cbd3;
+}
+.article-work p {
+  font-size: 1.25rem;
+  color: #596373;
+}
+.article-work header p {
+  font-size: 0.8rem;
+  color: #8c96a6;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  margin-top: 1rem;
+}
+
+a .article-work:hover p {
+  color: #21252b;
+}
+
+a .article-work:hover header p {
+  color: #596373;
+}
+
+a .article-work:hover img {
+  border: 1px solid #8c96a6;
+}
+
+.article-about {
+  row-gap: 2em;
+  column-gap: 18rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(88vw, 300px), 1fr));
+}
+.article-about img {
+  height: auto;
+}
+.article-about h3 {
+  margin-top: 2.33rem;
+}
+.article-about h4 {
+  font-size: 0.75rem;
+  margin-top: 2rem;
+  color: #8c96a6;
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+}
+
+.article-intro {
+  font-size: 2rem;
+  letter-spacing: -0.02rem;
+  line-height: 2.5rem;
+  padding-bottom: 1rem;
+}
+
+.article-body {
+  color: #596373;
+  font-size: 1.2rem;
+  line-height: 2rem;
+}
+
+.article-about-skills-education {
+  flex-direction: column;
+}
+
+.article-about-skills ul {
+  color: #596373;
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0 0 0;
+}
+.article-about-skills ul li {
+  margin: 0.5rem 0;
+}
+.article-about-skills ul li::before {
+  content: "• ";
+  color: #c5cbd3;
+}
+
+.article-about-skills p,
+.article-about-education p {
+  margin-top: 0.5rem;
+}
+
+.contact-form {
+  margin-top: 1rem;
+}
+
+.contact-label {
+  display: block;
+  margin: 1rem 0 0 0;
+  color: #2c323a;
+}
+
+.contact-input {
+  min-width: min(88vw, 525px);
+  padding: 0.75rem;
+  border: 1px solid #c5cbd3;
+  border-radius: 0.25rem;
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
+  resize: vertical;
+}
+.contact-input:focus {
+  outline: 2px solid #169ef8;
+}
+
+.contact-submit {
+  background-color: #169ef8;
+  color: whitesmoke;
+  padding: 0.75rem 1.25rem;
+  border: none;
+  border-radius: 0.25rem;
+  min-width: min(88vw, 525px);
+  min-height: 3.5rem;
+  opacity: 1;
+  visibility: visible;
+  cursor: pointer;
+}
+.contact-submit:hover, .contact-submit:focus {
+  outline: none;
+  background-color: #0678c5;
+}
+
+.contact-submit.disabled {
+  background-color: #d5d9df;
+  color: #aeb6c1;
+  cursor: auto;
+}
+
+.contact-submit[data-visible=false] {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.contact-error {
+  color: #f91fa2;
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin-bottom: 0.75rem;
+  display: block;
+  min-height: 1.5rem;
+}
+
+.contact-success {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #169ef8;
+  color: whitesmoke;
+  text-align: center;
+  padding: 0.75rem 1.25rem;
+  border: none;
+  border-radius: 0.25rem;
+  max-width: min(88vw, 525px);
+  min-height: 3.5rem;
+  transform: translateY(-100%);
+  visibility: hidden;
+  opacity: 0;
+}
+
+.contact-success[data-visible=true] {
+  visibility: visible;
+  opacity: 1;
+}
+
+.label-required {
+  color: #f91fa2;
+  font-size: 0.75em;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.mobile-nav-toggle {
+  display: none;
+}
+
+.main-nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  column-gap: 0.1rem;
+  transition-duration: 0s;
+}
+
+.main-nav-list li a {
+  color: #596373;
+  text-decoration: none;
+  display: inline-block;
+  position: relative;
+  padding: 0.25em 1em;
+  background: none;
+  /*
+        @include abstracts.hocus {
+
+            color: abstracts.$black;
+            // color: abstracts.$darkgrey;
+            // color: abstracts.$color-primary;
+        } 
+
+  */
+}
+.main-nav-list li a.active {
+  color: #2c323a;
+}
+.main-nav-list li a:hover, .main-nav-list li a:focus {
+  outline: none;
+}
+.main-nav-list li a:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 1em;
+  right: 1em;
+  height: 2px;
+  background: #169ef8;
+  transform: scaleX(0);
+  transition: transform 150ms ease-in-out;
+}
+.main-nav-list li a:hover::after, .main-nav-list li a:focus::after {
+  transform: scaleX(1);
+}
+
+@media (max-width: 750px) {
+  .main-nav-list {
+    --gap: 0;
+    position: fixed;
+    z-index: 1000;
+    inset: 0 0 0 6%;
+    flex-direction: column;
+    padding: min(30vh, 5rem) 2rem;
+    background-color: whitesmoke;
+    transform: translateX(100%);
+    transition: transform 350ms ease-in-out;
+  }
+
+  .main-nav-list[data-visible=true] {
+    transform: translateX(0%);
+    box-shadow: -20px 0 20px 10px rgba(0, 0, 0, 0.25);
+  }
+
+  /*
+  .main-nav-list li {
+    // border-top: 1px solid abstracts.$midgrey;
+    // padding-top: 1rem;
+    // padding-bottom: 1rem;
+    // padding: 1rem 0;
+    // background-color: aqua;
+  }
+  */
+  /*
+  .main-nav-list li:last-child {
+    border-bottom: 1px solid abstracts.$midgrey;
+    padding-bottom: 1rem;
+    // border-top: 2px solid abstracts.$midgrey;
+    // padding-top: 1rem;
+  }
+  */
+  .main-nav-list li:first-child {
+    border-top: 1px solid #c5cbd3;
+  }
+
+  .main-nav-list li a {
+    width: 100%;
+    height: 100%;
+    border-bottom: 1px solid #c5cbd3;
+    padding: 1rem 0 1rem 1rem;
+  }
+
+  .main-nav-list li a::after {
+    content: none;
+  }
+
+  .mobile-nav-toggle {
+    display: block;
+    position: absolute;
+    z-index: 9999;
+    border: 0;
+    color: #596373;
+    background-color: transparent;
+    width: 2rem;
+    aspect-ratio: 1;
+    top: 1.4rem;
+    right: 1.6rem;
+  }
+}
+footer {
+  color: #596373;
+  background-color: #2c323a;
+  font-size: 0.75rem;
+}
+@media (max-width: 420px) {
+  footer {
+    font-size: 0.6rem;
+  }
+}
+
+.footer-container {
+  min-height: 5rem;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 0.25rem;
+  /*
+  @include abstracts.tiny-screen {
+    justify-content: initial;
+    align-items: flex-start;
+    flex-direction: column;
+    // --gap: 0.5rem;
+
+    padding-top: 1rem;
+
+  }
+  */
+}
+
+.copyright {
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+}
+@media (max-width: 420px) {
+  .copyright {
+    max-width: 5rem;
+  }
+}
+
+.madebyme {
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  position: relative;
+}
+@media (max-width: 420px) {
+  .madebyme {
+    max-width: 3rem;
+    text-align: right;
+  }
+}
+
+.madebyme a {
+  background: none;
+  display: inline-block;
+  padding: 0.5em 1em;
+  color: #596373;
+  text-decoration: none;
+  /*
+  @include abstracts.hocus {
+    // border-bottom: 2px solid abstracts.$color-primary;
+    // background-size: 4px 2px;
+  }
+  */
+}
+@media (max-width: 420px) {
+  .madebyme a {
+    padding: 0;
+  }
+}
+.madebyme a:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 1em;
+  right: 1em;
+  height: 2px;
+  background: #169ef8;
+  transform: scaleX(0);
+  transition: transform 150ms ease-in-out;
+}
+.madebyme a:hover::after, .madebyme a:focus::after {
+  transform: scaleX(1);
+}
+
+@media (max-width: 420px) {
+  .madebyme a:after {
+    content: none;
+  }
+}
+.loading {
+  display: flex;
+  justify-content: center;
+}
+
+.loading--full-height {
+  align-items: center;
+  height: 100%;
+}
+
+.loading::after {
+  content: "";
+  width: 2rem;
+  height: 2rem;
+  border: 0.2rem solid transparent;
+  border-top-color: whitesmoke;
+  border-right-color: whitesmoke;
+  border-radius: 50%;
+  animation: loading 0.75s linear infinite;
+}
+
+@keyframes loading {
+  to {
+    transform: rotate(1turn);
+  }
+}
+.section-container {
+  border-top: 3px solid #21252b;
+}
+@media (min-width: 750px) {
+  .section-container {
+    grid-template-columns: 100px 1fr;
+  }
+}
+
+.section-header {
+  height: 92.5%;
+}
+
+.section-container h2 {
+  margin-top: 1rem;
+  transition-duration: 0s;
+}
+@media (min-width: 750px) {
+  .section-container h2 {
+    position: sticky;
+    top: 6rem;
+    transform: rotate(90deg);
+    transform-origin: top left;
+    margin: 5rem 5rem 0rem 2rem;
+  }
+}
+
+/*
+.section-container hr {
+// .section-hr {
+
+    // starts at column 1 ends column 3 (i guess that means what would be the start of column 3)
+    grid-column: 1 / 2;
+    // border-top: 3px solid abstracts.$black;
+    // margin will default to auto, which will fill the space in a grid or flex item
+    // causing the hr width to be 0, set margin needs to be explicitly set
+    // (to something other than auto!)
+    margin: 0;
+    //align-self: stretch;
+    border: 0;
+    //width: 200px;
+    height: 5px;
+    background: abstracts.$black;
+
+} 
+*/
+section {
+  margin: 4rem 0;
+}

@@ -1,0 +1,8 @@
+.saturate-in {
+  // set to 0 disable the saturation effect
+  filter: grayscale(0);
+}
+
+.saturate-in.saturate {
+  filter: grayscale(0);
+}

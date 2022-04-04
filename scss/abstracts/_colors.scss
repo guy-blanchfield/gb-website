@@ -1,0 +1,106 @@
+// colours
+
+// maybe we might need to
+// @use 'variables';
+
+// naming / var ideas from matt grey jekyll site
+// color-primary (white)
+// color-secondary (nearly black)
+// color-tertiary (0,0,255 blue)
+// color-action (bright-green)
+// color-highlight
+// color-background
+// color-line
+// color-line-subtle
+
+// NB not all these are explicit, some are tints, shades of
+// colours that are defined first
+
+// possibles
+$mycolorspaceturquoise: #00c9b7;
+// good ole fog dog
+$fogdog: #f06d06;
+
+// atom dark theme
+// https://github.com/joonro/Spyder-Color-Themes/blob/master/atom-one-dark.ini
+
+$softblack: #282c34;
+$teal: #0a99bb;
+$black: #000000;
+$darkgrey: #434957;
+$turquoise: #56b6c2;
+$nearlyblack: #21252b;
+$lime: #4dff00;
+$lightbluegrey: #abb2bf;
+$mauve: #c678dd;
+$paleteal: #56b6c2;
+$softblue: #61afef;
+$darkbluegrey: #5c6370;
+$wlightpeagreen: #98c379;
+$softorange: #d19a66;
+$softamber: #e5c07b;
+
+// from https://mycolor.space
+
+// generated from #d19a66;
+// 'matching palette'
+$softorange: #d19a66;
+$chocolate: #524439;
+$stonybrown: #b9a89b;
+$lightteal: #3ab7a6;
+$darkteal: #008172;
+
+// 'squash palette'
+$softorange: #d19a66;
+$skyblue: #00bed0;
+$easypink: #f47cc5;
+
+// generated from #cb7f2a;
+// 'matching palette'
+$thickorange: #cb7f2a;
+$chocolate: #524439;
+$stonybrown: #b9a89b;
+$richteal: #3ab7a6;
+$sombreteal: #007360;
+
+// 'squash palette'
+$softorange: #cb7f2a;
+$blueskyblue: #00adc4;
+$juicyfuscia: #ec57b7;
+
+// turnwall colours
+$bodygrey: #3e4242;
+$headinggrey: #242929; // also the large hrs
+$lightergrey: #9ea5a5;
+// link underline / bg transition
+// linear-gradient(#159df8 0%, #159df8 100%);
+$linkblue: #159df8;
+
+// ok, trying hsl
+// see kp on hsl - https://www.youtube.com/watch?v=Ab9pHqhsfcc
+
+// $color-primary: #3ab7a6;
+// $color-primary: #169ef8;
+$color-primary: hsl(204, 94%, 53%);
+$color-secondary: hsl(29, 54%, 61%);
+$color-tertiary: hsl(324, 85%, 72%);
+
+$color-error: hsl(324, 95%, 55%);
+$black: hsl(216, 13%, 15%); // #21252b
+$white: hsl(0, 0%, 96%);
+
+$darkergrey: hsl(216, 13%, 20%);
+$darkgrey: hsl(216, 13%, 40%);
+$darkmidgrey: hsl(216, 13%, 60%);
+$midgrey: hsl(216, 13%, 80%);
+$lightmidgrey: hsl(216, 13%, 90%);
+$lightgrey: hsl(216, 13%, 95%);
+
+/*
+$darkergrey: #333333;
+$darkgrey: #666666;
+// $darkmidgrey: #999999;
+$darkmidgrey: #aaaaaa;
+$midgrey: #cfcfcf;
+$lightgrey: #f2f2f2;
+*/

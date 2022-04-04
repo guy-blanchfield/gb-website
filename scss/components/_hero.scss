@@ -1,0 +1,98 @@
+@use 'abstracts';
+
+.hero {
+  // min-height, not height just in case
+  min-height: 63vh;
+  // overide bottom margin from section (4rem 0)
+  margin: 0;
+  border-bottom: 1px solid abstracts.$midgrey;
+
+  // don't think it needed any of the positioning stuff below
+  // to get the hero to sit under the header, might just have been
+  // the margin rules from <section>
+
+  /* // all of this stuff probably bollocks
+
+  // and a margin-top so that it clears the sticky header
+  // or maybe put the margin on the hero content
+  // margin-top: 5rem;
+
+  // because of the disappearing header, we ether need
+  // to make the header not disappear until we've scrolled down
+  // a bit further
+  // OR
+  // offset the hero's vertical position so it sits under the header
+  // basically sticks to the top of the page
+  // but preferably without fixing its position
+  // so try
+  //position: relative;
+  //top: -5rem;
+  // nah means the next section is 5rem further down than it should be
+  // position: absolute isn't helping either
+
+  // yeah that seems ok, but now header needs a z-index
+
+  */
+
+  // color before image, so it loads first
+  // background-color: abstracts.$lightmidgrey; // was #dde0e0;
+  background: linear-gradient(
+    45deg,
+    abstracts.$lightmidgrey,
+    abstracts.$lightgrey
+  );
+  // background-image: url(../../img/design/annie-spratt-bg-1920x1080-saturate-50-opacity-20-offset-450.jpg);
+  background-size: cover; // scales the image as large as possible to fill the container, stretching the image if necessary
+  background-position: center;
+  // padding: 10rem 0;
+
+  background-attachment: fixed; // pretty sure this is working!? has to go after the other properties though
+}
+
+// see if we can get way with just using section-container
+// no! because section-container rotates the h2!
+//.hero-container {
+
+// no margin or padding here - they'll only be overridden by .container
+// try inset, requires position though
+// which probably means you need a position relative on the parent...
+// inset: 20rem;
+// background-color: rgb(215, 216, 216);
+
+// color: abstracts.$white;
+
+//}
+
+.hero h2 {
+  //border: 1px solid magenta;
+  margin: 12rem 0 0 0;
+  font-size: 4rem;
+  line-height: 4.5rem;
+  letter-spacing: -0.02em;
+  color: abstracts.$black;
+
+  @include abstracts.tiny-screen {
+    font-size: 3rem;
+    line-height: 3.5rem;
+  }
+}
+
+.hero p {
+  //border: 1px solid cyan;
+  margin: 1rem 0 0 0;
+  font-size: 2rem;
+  line-height: 2.5rem;
+  letter-spacing: -0.02em;
+
+  @include abstracts.tiny-screen {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+}
+
+.hero hr {
+  margin: 0;
+  height: 5px;
+  border: 0;
+  background-color: abstracts.$black;
+}

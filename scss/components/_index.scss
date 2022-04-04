@@ -1,0 +1,11 @@
+// index @forwards scss files in scss/components
+
+@forward 'header';
+@forward 'logo';
+@forward 'hero';
+@forward 'article';
+// @forward 'cards';
+@forward 'contact';
+@forward 'nav';
+@forward 'footer';
+@forward 'loading';

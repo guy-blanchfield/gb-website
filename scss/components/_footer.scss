@@ -1,0 +1,106 @@
+@use 'abstracts';
+
+footer {
+  color: abstracts.$darkgrey;
+  background-color: abstracts.$darkergrey;
+  font-size: 0.75rem;
+  @include abstracts.tiny-screen {
+    font-size: 0.6rem;
+  }
+}
+
+.footer-container {
+  min-height: 5rem;
+  align-items: center;
+  justify-content: space-between;
+
+  // padding: 1.5rem 0;
+  // align-items center should vertically align the items center
+  // maybe a touch of padding to nake up the bottom padding on madebyme
+  // that you don't see until it hovers
+  padding-top: 0.25rem;
+  // padding: 0;
+
+  /*
+  @include abstracts.tiny-screen {
+    justify-content: initial;
+    align-items: flex-start;
+    flex-direction: column;
+    // --gap: 0.5rem;
+
+    padding-top: 1rem;
+
+  }
+  */
+}
+
+.copyright {
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+
+  @include abstracts.tiny-screen {
+    max-width: 5rem;
+  }
+}
+
+.madebyme {
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  position: relative;
+  // line-height controls the position of the underline border thing
+  // line-height: 1.5rem;
+  // background-color: cyan;
+  // background-size: 0px 2px;
+
+  @include abstracts.tiny-screen {
+    max-width: 3rem;
+    text-align: right;
+  }
+}
+
+.madebyme a {
+  // override universal link background
+  background: none;
+  display: inline-block;
+  padding: 0.5em 1em;
+  color: abstracts.$darkgrey;
+  text-decoration: none;
+  // override universal transition for now
+  // transition-duration: 0.2s;
+
+  /*
+  @include abstracts.hocus {
+    // border-bottom: 2px solid abstracts.$color-primary;
+    // background-size: 4px 2px;
+  }
+  */
+
+  @include abstracts.tiny-screen {
+    padding: 0;
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    //left: var(--spacing);
+    //right: var(--spacing);
+    left: 1em; // these need to be the same as the horizontal padding value of the a
+    right: 1em;
+    height: 2px;
+    background: abstracts.$color-primary;
+    transform: scaleX(0);
+    transition: transform 150ms ease-in-out;
+  }
+
+  &:hover::after,
+  &:focus::after {
+    transform: scaleX(1);
+  }
+}
+
+@include abstracts.tiny-screen {
+  .madebyme a:after {
+    content: none;
+  }
+}

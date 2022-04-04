@@ -1,0 +1,74 @@
+@use 'abstracts';
+
+// .logo is the containing div for the icon and the h1
+// (.logo-icon and .logo-text)
+
+a.logo-link {
+  // color: inherit;
+  // color: abstracts.$black;
+  color: abstracts.$darkergrey;
+  text-decoration: none;
+
+  // override the universal background hover link effect
+  background: none;
+
+  // no focus for now, until you fix it staying focussed on click
+
+  // transition: all ease 250ms;
+  // no hover either, until you come up with a better idea!
+  // try transform scale - nah transition is blurry and no transition looks cheap
+  //&:hover {
+  //  transform: scale(1.05);
+  //  }
+}
+
+.logo {
+  //width: 500px;
+  // background-color: crimson;
+  flex-direction: row;
+  //align-content: flex-start;
+
+  // NB! we have to use --gap to set gap, because of the way the gap property is set up in our flex utility class
+  // see utilities/_flex.scss for --gap info
+  --gap: 0.25rem;
+}
+// .logo-text is the h1
+.logo-text {
+  // border: 1px solid cyan;
+  margin: 0;
+  font-size: 1.25rem;
+  // font-weight: 700;
+  letter-spacing: -0.02rem;
+  // text-transform: uppercase;
+
+  // maybe set color here so only the icon hovers?
+  // nah
+  // color: abstracts.$black;
+}
+
+.logo-icon {
+  // dedicated color for icon, darkgrey for now
+  // nah because it means the hover's got to be set twice
+  // leave it for now
+  // color: abstracts.$darkergrey;
+  // color: abstracts.$color-primary;
+
+  // border: 1px solid green;
+  // margin: 0.2rem 0 0 0;
+  margin-top: 0.25rem;
+  // margin-right: 0;
+  font-size: 0.8rem;
+
+  // hide until fonts are loaded - see fontsready.js
+  visibility: hidden;
+}
+
+// maybe a utitlity class for this, but just do a dedicated class for now
+.logo-icon.ready {
+  visibility: visible;
+}
+
+.logo-icon--inner {
+  color: abstracts.$white;
+  // margin: 0;
+}

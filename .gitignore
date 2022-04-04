@@ -1,0 +1,9 @@
+node_modules
+vendor
+
+### Sass ###
+.sass-cache/
+*.css.map
+
+### PHP with private key ###
+php/contact_process.php
