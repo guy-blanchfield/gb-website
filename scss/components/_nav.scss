@@ -16,7 +16,7 @@
   list-style: none;
   padding: 0;
   margin: 0;
-  // doesn't reall need any gap here because of the padding on the links
+  // doesn't really need any gap here because of the padding on the links
   // but give it a little bit for luck
   // set it column gap, so it doesn't affect the mobile nav
   column-gap: 0.1rem;
@@ -124,8 +124,6 @@
   .main-nav-list[data-visible='true'] {
     transform: translateX(0%);
 
-    // from turnwall.com - the left shadow thing
-    // right: 0;
     // box-shadow: -60px 0 60px 30px rgba(0, 0, 0, 0.25); // orig values
     box-shadow: -20px 0 20px 10px rgba(0, 0, 0, 0.25);
   }

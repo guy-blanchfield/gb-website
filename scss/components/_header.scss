@@ -11,10 +11,9 @@
   // visibility: hidden;
   // for the semi sticky scroll hide thing
   // maybe put this in a media query depending on whether you go mobile first
-  // (alex turnwall site doesn't have the scroll hide nav thing in small or medium modes)
-  // it's going to need a background if it's going to be sticky
+ // it's going to need a background if it's going to be sticky
   background-color: abstracts.$white;
-  // nb on alex turnwall site border darkens as it unhides!
+
   border-bottom: 1px solid abstracts.$midgrey;
   // set a height just to see what's what
   height: 5rem;
@@ -41,10 +40,6 @@
 
   // probably don't need to worry about the top shadow b/c header position top is 0
 
-  // box-shadow: 0px 20px 10px -15px abstracts.$midgrey;
-  // box-shadow: 0px 2px 20px abstracts.$midgrey;
-  // values from turnwall.com
-  // box-shadow: 0 0 1.5rem #00000033;
   // from kevin powell's intersection observer navigation style video
   // box-shadow: 0 3px 20px rgba(black, 0.2);
   // best of both worlds

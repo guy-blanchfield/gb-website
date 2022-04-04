@@ -2,37 +2,10 @@
 
 .hero {
   // min-height, not height just in case
-  min-height: 63vh;
+  min-height: max(63vh, 600px);
   // overide bottom margin from section (4rem 0)
   margin: 0;
   border-bottom: 1px solid abstracts.$midgrey;
-
-  // don't think it needed any of the positioning stuff below
-  // to get the hero to sit under the header, might just have been
-  // the margin rules from <section>
-
-  /* // all of this stuff probably bollocks
-
-  // and a margin-top so that it clears the sticky header
-  // or maybe put the margin on the hero content
-  // margin-top: 5rem;
-
-  // because of the disappearing header, we ether need
-  // to make the header not disappear until we've scrolled down
-  // a bit further
-  // OR
-  // offset the hero's vertical position so it sits under the header
-  // basically sticks to the top of the page
-  // but preferably without fixing its position
-  // so try
-  //position: relative;
-  //top: -5rem;
-  // nah means the next section is 5rem further down than it should be
-  // position: absolute isn't helping either
-
-  // yeah that seems ok, but now header needs a z-index
-
-  */
 
   // color before image, so it loads first
   // background-color: abstracts.$lightmidgrey; // was #dde0e0;
