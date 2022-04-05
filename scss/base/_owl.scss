@@ -1,0 +1,11 @@
+/* just putting this here to remind you to use in future projects */
+/* if you're going to use, you probably need to have it from the start */
+/* either put it at the start of _base or forward it as a partial from base/index */
+
+/* lobotomised owl margin technique */
+/* https://alistapart.com/article/axiomatic-css-and-lobotomized-owls/ */
+
+* + * {
+	// margin-top: 1.5em; // heydon pickering default
+  margin-top: 1rem;
+}
