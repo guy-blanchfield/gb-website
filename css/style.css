@@ -79,8 +79,8 @@ $lightgrey: #f2f2f2;
   scrollbar-color: #8c96a6 #f1f2f4;
 }
 *::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: auto;
+  height: auto;
 }
 *::-webkit-scrollbar-thumb {
   background: #8c96a6;

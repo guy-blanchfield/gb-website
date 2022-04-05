@@ -64,8 +64,12 @@
 // see kevin powell https://www.youtube.com/watch?v=lvKK2fs6h4I
 // css-tricks https://css-tricks.com/the-current-state-of-styling-scrollbars-in-css/
 
+// but see also https://developer.mozilla.org/en-US/docs/Web/CSS/::-webkit-scrollbar
+// mdn says don't use webkit scrollbar basically
+
 @mixin scrollbars(
-  $size: 10px,
+  // $size: 10px,
+  $size: auto,
   // maybe use abstracts/colors for this
   $foreground-color: #999,
   $background-color: #333
