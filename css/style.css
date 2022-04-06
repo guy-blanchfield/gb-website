@@ -40,7 +40,6 @@ body {
 
 /* A elements that don't have a class get default styles */
 a:not([class]) {
-  -webkit-text-decoration-skip: ink;
   text-decoration-skip-ink: auto;
 }
 
@@ -63,7 +62,6 @@ select {
 html {
   -moz-text-size-adjust: none;
   -webkit-text-size-adjust: none;
-  -ms-text-size-adjust: none;
   text-size-adjust: none;
 }
 
@@ -124,24 +122,29 @@ a:hover {
   src: url("../../assets/fonts/texgyreheros-regular-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal;
+  font-display: fallback;
+  /* Define how the browser behaves during download */
 }
 @font-face {
   font-family: "tex_gyre_heros";
   src: url("../../assets/fonts/texgyreheros-italic-webfont.woff") format("woff");
   font-weight: normal;
   font-style: italic;
+  font-display: fallback;
 }
 @font-face {
   font-family: "tex_gyre_heros";
   src: url("../../assets/fonts/texgyreheros-bold-webfont.woff") format("woff");
   font-weight: bold;
   font-style: normal;
+  font-display: fallback;
 }
 @font-face {
   font-family: "tex_gyre_heros";
   src: url("../../assets/fonts/texgyreheros-bolditalic-webfont.woff") format("woff");
   font-weight: bold;
   font-style: italic;
+  font-display: fallback;
 }
 h2 {
   margin-top: 1rem;
@@ -217,12 +220,10 @@ img.lazy {
 }
 
 .saturate-in {
-  -webkit-filter: grayscale(0);
   filter: grayscale(0);
 }
 
 .saturate-in.saturate {
-  -webkit-filter: grayscale(0);
   filter: grayscale(0);
 }
 
@@ -348,7 +349,6 @@ a.logo-link {
 
 .article-work {
   row-gap: 0rem;
-  -moz-column-gap: 2rem;
   column-gap: 2rem;
   grid-template-columns: repeat(auto-fit, minmax(min(88vw, 300px), 1fr));
   margin: 3rem 0;
@@ -385,7 +385,6 @@ a .article-work:hover img {
 
 .article-about {
   row-gap: 2em;
-  -moz-column-gap: 18rem;
   column-gap: 18rem;
   grid-template-columns: repeat(auto-fit, minmax(min(88vw, 300px), 1fr));
 }
@@ -536,7 +535,6 @@ a .article-work:hover img {
   list-style: none;
   padding: 0;
   margin: 0;
-  -moz-column-gap: 0.1rem;
   column-gap: 0.1rem;
   transition-duration: 0s;
 }
@@ -749,14 +747,7 @@ footer {
   border-top-color: whitesmoke;
   border-right-color: whitesmoke;
   border-radius: 50%;
-  -webkit-animation: loading 0.75s linear infinite;
   animation: loading 0.75s linear infinite;
-}
-
-@-webkit-keyframes loading {
-  to {
-    transform: rotate(1turn);
-  }
 }
 
 @keyframes loading {
@@ -783,7 +774,6 @@ footer {
 }
 @media (min-width: 750px) {
   .section-container h2 {
-    position: -webkit-sticky;
     position: sticky;
     top: 6rem;
     transform: rotate(90deg);

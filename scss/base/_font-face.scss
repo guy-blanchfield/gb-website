@@ -8,11 +8,15 @@
 /* Tex Gyre Heros */
 /* normal, italic, bold, bold-italic */
 
+// NB added font-display 06-04-22
+// see https://css-tricks.com/almanac/properties/f/font-display/
+
 @font-face {
   font-family: "tex_gyre_heros";
   src: url('../../assets/fonts/texgyreheros-regular-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
+  font-display: fallback; /* Define how the browser behaves during download */
 }
 
 @font-face {
@@ -20,6 +24,7 @@
   src: url('../../assets/fonts/texgyreheros-italic-webfont.woff') format('woff');
   font-weight: normal;
   font-style: italic;
+  font-display: fallback;
 }
 
 @font-face {
@@ -27,6 +32,7 @@
   src: url('../../assets/fonts/texgyreheros-bold-webfont.woff') format('woff');
   font-weight: bold;
   font-style: normal;
+  font-display: fallback;
 }
 
 @font-face {
@@ -34,4 +40,5 @@
   src: url('../../assets/fonts/texgyreheros-bolditalic-webfont.woff') format('woff');
   font-weight: bold;
   font-style: italic;
+  font-display: fallback;
 }
