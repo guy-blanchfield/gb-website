@@ -1,9 +1,11 @@
-node_modules
-vendor
+node_modules/
+assets/vendor/fontawesome/
 
 ### Sass ###
 .sass-cache/
 *.css.map
 
 ### PHP with private key ###
+## need to find a better way of doing this ##
+## maybe with some kind of include for the private key ##
 php/contact_process.php

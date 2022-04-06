@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "description": "the website of guy blanchfield",
   "main": "index.js",
+  "browserslist": [
+                    "last 5 years",
+                    "> 5%",
+                    "not dead"
+                  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,6 +16,7 @@
   "devDependencies": {
     "browser-sync": "^2.27.7",
     "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^8.0.0",
     "gulp-sass": "^5.1.0",
     "node-fetch": "^3.2.0",
     "sass": "^1.49.8"

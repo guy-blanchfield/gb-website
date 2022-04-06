@@ -3,6 +3,8 @@ const gulp = require('gulp');
 // by requiring 'sass' as well as 'gulp-sass'
 const sass = require('gulp-sass')(require('sass'));
 const browserSync = require('browser-sync').create();
+const autoprefixer = require('gulp-autoprefixer');
+
 
 // compile scss into css
 function style() {
@@ -27,5 +29,24 @@ function watch() {
     gulp.watch('./js/**/*.js').on('change', browserSync.reload);
 }
 
+
+// autoprefix the css
+// could be part of a build function, 
+// or could be integrated into the style function i.e. autoprefix the css that comes out of sass()
+// but leave as is for now and run it manually ( gulp prefix )
+function prefix() {
+    // get css files
+    return gulp.src('./css/**/*.css')
+    // pass css files through autoprefixer
+    .pipe(autoprefixer({
+            // browsers deprecated, now uses browserslist from package.json
+            // browsers: ['last 99 versions'], 
+            cascade: false
+    }))
+    // save the to the css folder
+    .pipe(gulp.dest('./css/prefix'))
+}
+
 exports.style = style;
 exports.watch = watch;
+exports.prefix = prefix;
