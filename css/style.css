@@ -122,29 +122,24 @@ a:hover {
   src: url("../../assets/fonts/texgyreheros-regular-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal;
-  font-display: fallback;
-  /* Define how the browser behaves during download */
 }
 @font-face {
   font-family: "tex_gyre_heros";
   src: url("../../assets/fonts/texgyreheros-italic-webfont.woff") format("woff");
   font-weight: normal;
   font-style: italic;
-  font-display: fallback;
 }
 @font-face {
   font-family: "tex_gyre_heros";
   src: url("../../assets/fonts/texgyreheros-bold-webfont.woff") format("woff");
   font-weight: bold;
   font-style: normal;
-  font-display: fallback;
 }
 @font-face {
   font-family: "tex_gyre_heros";
   src: url("../../assets/fonts/texgyreheros-bolditalic-webfont.woff") format("woff");
   font-weight: bold;
   font-style: italic;
-  font-display: fallback;
 }
 h2 {
   margin-top: 1rem;
@@ -279,19 +274,28 @@ a.logo-link {
 }
 
 .logo {
+  font-size: 1rem;
   flex-direction: row;
   --gap: 0.25rem;
+}
+@media (max-width: 340px) {
+  .logo {
+    font-size: 0.8rem;
+    padding-top: 0.15em;
+  }
 }
 
 .logo-text {
   margin: 0;
-  font-size: 1.25rem;
-  letter-spacing: -0.02rem;
+  padding-top: 0.02rem;
+  padding-left: 0.1rem;
+  font-size: 1.25em;
+  letter-spacing: -0.016em;
 }
 
 .logo-icon {
-  margin-top: 0.25rem;
-  font-size: 0.8rem;
+  margin-top: 0.25em;
+  font-size: 0.8em;
   visibility: hidden;
 }
 
@@ -312,6 +316,20 @@ a.logo-link {
   background-position: center;
   background-attachment: fixed;
 }
+@media (max-width: 340px) {
+  .hero {
+    min-height: max(63vh, 450px);
+  }
+}
+
+.hero-content {
+  max-width: max-content;
+  visibility: hidden;
+}
+
+.hero-content.ready {
+  visibility: visible;
+}
 
 .hero h2 {
   margin: 12rem 0 0 0;
@@ -319,34 +337,112 @@ a.logo-link {
   line-height: 4.5rem;
   letter-spacing: -0.02em;
   color: #21252b;
+  /* the hero stuff needs a bit of extra control media query wise */
+  /* because the heading and the typewriter p need to stay on one line */
 }
-@media (max-width: 420px) {
+@media (max-width: 430px) {
   .hero h2 {
-    font-size: 3rem;
-    line-height: 3.5rem;
+    font-size: 3.5rem;
+    line-height: 4rem;
   }
 }
-
-.hero p {
-  margin: 1rem 0 0 0;
-  font-size: 2rem;
-  line-height: 2.5rem;
-  letter-spacing: -0.02em;
-}
-@media (max-width: 420px) {
-  .hero p {
-    font-size: 1.5rem;
+@media (max-width: 340px) {
+  .hero h2 {
+    font-size: 2rem;
     line-height: 2rem;
   }
 }
 
-.hero hr {
-  margin: 0;
-  height: 5px;
-  border: 0;
-  background-color: #21252b;
+.hero p {
+  color: #596373;
+  margin: 1rem 0 0 0;
+  font-size: 2rem;
+  line-height: 2.5rem;
+  letter-spacing: -0.02em;
+  /* the hero stuff needs a bit of extra control media query wise */
+  /* because the heading and the typewriter p need to stay on one line */
+}
+@media (max-width: 430px) {
+  .hero p {
+    font-size: 1.7rem;
+    line-height: 2rem;
+  }
+}
+@media (max-width: 340px) {
+  .hero p {
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+  }
 }
 
+/* animation stuff */
+@supports (animation-fill-mode: both) {
+  /* NB! All these classes get added to the html by loader.js */
+  /* when fonts and the first image are loaded, so the animation */
+  /* isn't going on while things are still loading around it */
+  /* fade-in stuff for the greeting headline thing */
+  .greeting-hi, .greeting-im, .greeting-guy {
+    animation-name: fade-in;
+    animation-duration: 0.75s;
+    animation-fill-mode: both;
+  }
+
+  .greeting-hi {
+    animation-delay: 0.5s;
+  }
+
+  .greeting-im, .greeting-guy {
+    animation-delay: 2s;
+  }
+
+  /*
+  .greeting-guy {
+    animation-delay: 2s;
+  }
+  */
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  /* typewriter effect */
+  .hero p.typewriter {
+    line-height: initial;
+    overflow: hidden;
+    /* Ensures the content is not revealed until the animation */
+    border-right: 0.15em solid transparent;
+    /* The typewriter cursor */
+    white-space: nowrap;
+    /* Keeps the content on a single line */
+    margin-right: auto;
+    /* Gives that scrolling effect as the typing happens */
+    animation: typing 3.5s steps(30, end), blink-caret 0.75s step-end 100;
+    animation-delay: 4.5s, 2.5s;
+    animation-fill-mode: both;
+  }
+
+  /* The typing effect */
+  @keyframes typing {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+  /* The typewriter cursor effect */
+  @keyframes blink-caret {
+    from, to {
+      border-color: transparent;
+    }
+    50% {
+      border-color: #169ef8;
+    }
+  }
+}
 .article-work {
   row-gap: 0rem;
   column-gap: 2rem;
@@ -592,7 +688,7 @@ a .article-work:hover img {
 
   .main-nav-list[data-visible=true] {
     transform: translateX(0%);
-    box-shadow: -20px 0 20px 10px rgba(0, 0, 0, 0.25);
+    box-shadow: -20px 0 20px 10px rgba(33, 37, 43, 0.2);
   }
 
   /*
@@ -645,7 +741,7 @@ footer {
   background-color: #2c323a;
   font-size: 0.75rem;
 }
-@media (max-width: 420px) {
+@media (max-width: 430px) {
   footer {
     font-size: 0.6rem;
   }
@@ -673,7 +769,7 @@ footer {
   text-transform: uppercase;
   letter-spacing: 0.2rem;
 }
-@media (max-width: 420px) {
+@media (max-width: 430px) {
   .copyright {
     max-width: 5rem;
   }
@@ -684,7 +780,7 @@ footer {
   letter-spacing: 0.2rem;
   position: relative;
 }
-@media (max-width: 420px) {
+@media (max-width: 430px) {
   .madebyme {
     max-width: 3rem;
     text-align: right;
@@ -704,7 +800,7 @@ footer {
   }
   */
 }
-@media (max-width: 420px) {
+@media (max-width: 430px) {
   .madebyme a {
     padding: 0;
   }
@@ -724,7 +820,7 @@ footer {
   transform: scaleX(1);
 }
 
-@media (max-width: 420px) {
+@media (max-width: 430px) {
   .madebyme a:after {
     content: none;
   }

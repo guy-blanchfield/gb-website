@@ -22,8 +22,14 @@
   }
 }
 
+@mixin smaller-screen {
+  @media (max-width: variables.$smaller-screen-breakpoint) {
+    @content;
+  }
+}
+
 @mixin tiny-screen {
-  @media (max-width: 420px) {
+  @media (max-width: variables.$tiny-screen-breakpoint) {
     @content;
   }
 }

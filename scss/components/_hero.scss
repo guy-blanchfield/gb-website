@@ -3,6 +3,10 @@
 .hero {
   // min-height, not height just in case
   min-height: max(63vh, 600px);
+  // looks a bit long in tiny-screen so adjust with media query
+  @include abstracts.tiny-screen {
+    min-height: max(63vh, 450px);
+  }
   // overide bottom margin from section (4rem 0)
   margin: 0;
   border-bottom: 1px solid abstracts.$midgrey;
@@ -36,6 +40,17 @@
 
 //}
 
+.hero-content {
+  max-width: max-content;
+  // background-color: aqua;
+  // hide until fonts and first image are loaded - see loader.js
+  visibility: hidden;
+}
+
+.hero-content.ready {
+  visibility: visible;
+}
+
 .hero h2 {
   //border: 1px solid magenta;
   margin: 12rem 0 0 0;
@@ -44,28 +59,136 @@
   letter-spacing: -0.02em;
   color: abstracts.$black;
 
+  /* the hero stuff needs a bit of extra control media query wise */
+  /* because the heading and the typewriter p need to stay on one line */
+
+  @include abstracts.smaller-screen {
+    font-size: 3.5rem;
+    line-height: 4rem;
+  }
+
   @include abstracts.tiny-screen {
-    font-size: 3rem;
-    line-height: 3.5rem;
+    font-size: 2rem;
+    line-height: 2rem;
   }
 }
 
 .hero p {
   //border: 1px solid cyan;
+  color: abstracts.$darkgrey;
   margin: 1rem 0 0 0;
   font-size: 2rem;
+  // NB line-height being overridden in typewriter class
+    // this is just for if we need a regular paragraph
   line-height: 2.5rem;
   letter-spacing: -0.02em;
 
-  @include abstracts.tiny-screen {
-    font-size: 1.5rem;
+  /* the hero stuff needs a bit of extra control media query wise */
+  /* because the heading and the typewriter p need to stay on one line */
+
+  @include abstracts.smaller-screen {
+    font-size: 1.7rem;
+    // NB line-height being overridden in typewriter class
+    // this is just for if we need a regular paragraph
     line-height: 2rem;
+  }
+
+  @include abstracts.tiny-screen {
+    font-size: 1.2rem;
+    // NB line-height being overridden in typewriter class
+    // this is just for if we need a regular paragraph
+    line-height: 1.5rem;
   }
 }
 
-.hero hr {
-  margin: 0;
-  height: 5px;
-  border: 0;
-  background-color: abstracts.$black;
+// .hero hr {
+//   margin: 0;
+//   height: 5px;
+//   border: 0;
+//   background-color: abstracts.$black;
+// }
+
+
+/* animation stuff */
+
+// try wrapping all this in a @supports feature query
+// supports seem to be good all the way down to ie10 so
+// testing for support is probably unnecessary but do it anyway
+
+@supports (animation-fill-mode: both) {
+
+  /* NB! All these classes get added to the html by loader.js */
+  /* when fonts and the first image are loaded, so the animation */
+  /* isn't going on while things are still loading around it */
+
+  /* fade-in stuff for the greeting headline thing */
+
+  // do it long hand for now, so it's easier to follow
+  .greeting-hi, .greeting-im, .greeting-guy {
+    animation-name: fade-in;
+    animation-duration: 0.75s;
+    animation-fill-mode: both;
+  }
+
+  .greeting-hi {
+    animation-delay: 0.5s;
+  }
+
+  // same delay for both, tried one after another, felt wrong
+  .greeting-im, .greeting-guy {
+    animation-delay: 2s;
+  }
+
+  /*
+  .greeting-guy {
+    animation-delay: 2s;
+  }
+  */
+
+  @keyframes fade-in {
+    from { opacity: 0 }
+    to { opacity: 1 }
+  }
+
+  /* typewriter effect */
+
+  // try more specificity to override the line-height
+  .hero p.typewriter {
+
+    line-height: initial;
+    overflow: hidden; /* Ensures the content is not revealed until the animation */
+    // border transparent so it's hidden until the animation starts
+    border-right: .15em solid transparent; /* The typewriter cursor */
+    white-space: nowrap; /* Keeps the content on a single line */
+    // consider a var for margin top and bottom
+    // not sure it needs margin-right auto???
+    margin-right: auto; /* Gives that scrolling effect as the typing happens */
+    // margin-left: auto;
+    // width: max-content;
+
+    animation: 
+      typing 3.5s steps(30, end),
+      // iteration count 100 so it doesn't blink forever, 100 is more than enough
+      blink-caret .75s step-end 100;
+
+    animation-delay: 4.5s, 2.5s;
+    // starts width 0, ends width 100% as remains in its final state
+    animation-fill-mode: both;
+  }
+
+  /* The typing effect */
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+    // to { width: max-content }
+  }
+
+  /* The typewriter cursor effect */
+  @keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: abstracts.$color-primary; }
+  }
+
 }
+
+// source: https://css-tricks.com/snippets/css/typewriter-effect/

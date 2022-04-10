@@ -1,10 +1,97 @@
-// NB! currently unused!
+/* make sure the fonts and the first image are loaded before displaying the hero stuff */
 
-// when everything has loaded
+const firstImg =  document.querySelector('[data-src="../img/content/png/bls_home_crop.png"]');
 
-const load = () => {
-    console.log("window onload complete!");
+console.log(firstImg.getAttribute('data-src'));
+
+/*
+
+function checkImageLoaded(img) {
+
+    return new Promise(function (resolve, reject) {
+
+        img.onload = function () {
+            // console.log(img.src + " is loaded!");
+            resolve();
+        }
+
+    });
 }
 
-window.onload = load;
+
+checkImageLoaded(firstImg).then(() => {
+
+    console.log("The promise is resolved");
+
+    }
+
+);
+*/
+
+const firstImgPromise = new Promise(function (resolve, reject) {
+
+    firstImg.onload = function () {
+        console.log(firstImg.src + " is loaded!");
+        resolve();
+    }
+
+});
+
+const fontsPromise = new Promise(function (resolve, reject) {
+
+    document.fonts.ready.then(function() {
+        console.log("Fonts are ready!");
+        resolve();
+    });
+
+});
+
+Promise.all([firstImgPromise, fontsPromise]).then((values) => {
+    //console.log(values);
+    console.log("The promises are resolved");
+    displayHeroContent();
+    displayLogoIcon();
+});
+
+function displayLogoIcon() {
+
+    const logoIcon = document.querySelector('.logo-icon');
+
+    if (!logoIcon.classList.contains('ready')) {
+        logoIcon.classList.add('ready');
+        // console.log('add class ready!');
+    }
+
+}
+
+function displayHeroContent() {
+
+    const heroContent = document.querySelector('.hero-content');
+    const heroH2Spans = document.querySelectorAll('.hero-content span');
     
+    console.log(heroH2Spans);
+
+    const heroH2SpanClasses = ['greeting-hi', 'greeting-im', 'greeting-guy'];
+
+    const heroContentPara = document.querySelector('.hero-content p');
+
+    // add the fade-in animation classes to the h2 spans
+    heroH2Spans.forEach((span, index) => {
+        if (!span.classList.contains(heroH2SpanClasses[index])) {
+            span.classList.add(heroH2SpanClasses[index]);
+            console.log('adding class ' + heroH2SpanClasses[index]);
+        }
+    });
+
+    // add the typewiter class to hero p
+    if (!heroContentPara.classList.contains('typewriter')) {
+        heroContentPara.classList.add('typewriter');
+        // console.log('add class ready!');
+    }
+
+    if (!heroContent.classList.contains('ready')) {
+        heroContent.classList.add('ready');
+        // console.log('add class ready!');
+    }
+
+}

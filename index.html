@@ -35,7 +35,7 @@
 
     <!-- js -->
     
-    <script src="./js/fontsready.js" defer></script>
+    <script src="./js/loader.js" defer></script>
     <script src="./js/lazyloadimages.js" defer></script>
     <script src="./js/contact.js" defer></script>
     <script src="./js/header.js" defer></script>
@@ -145,13 +145,22 @@
     <main id="main-content">
 
     <!-- ============== hero =================== -->    
-        <section class="hero parallax--bg">
+        <section class="hero">
 
           <div class="container grid">
-          
-          <h2>Hi, I&#8217m Guy.</h2>
-          <p>I make things for the web.</p>
-          
+
+            <div class="hero-content">
+            
+            <h2>
+              <!-- greeting classes now get added with js -->
+              <span>Hi,</span> <span>I&#8217m</span> <span>Guy.</span>
+            </h2>
+            
+            <!-- typewiter class now gets added with js -->
+            <p>I make things for the web.</p>
+            
+            </div>
+
           </div>
 
         </section>

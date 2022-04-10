@@ -4,3 +4,12 @@
 // ideally one breakpoint only
 // $large-screen-breakpoint currently 750px, consider 35em?
 $large-screen-breakpoint: 750px;
+
+// try adding an in-between size
+// for the hero and the footer, 
+// that's where things need a bit of extra control
+
+$smaller-screen-breakpoint: 430px;
+
+// $tiny-screen-breakpoint: 420px;
+$tiny-screen-breakpoint: 340px;

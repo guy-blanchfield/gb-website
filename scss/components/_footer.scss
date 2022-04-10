@@ -4,7 +4,7 @@ footer {
   color: abstracts.$darkgrey;
   background-color: abstracts.$darkergrey;
   font-size: 0.75rem;
-  @include abstracts.tiny-screen {
+  @include abstracts.smaller-screen {
     font-size: 0.6rem;
   }
 }
@@ -38,7 +38,7 @@ footer {
   text-transform: uppercase;
   letter-spacing: 0.2rem;
 
-  @include abstracts.tiny-screen {
+  @include abstracts.smaller-screen {
     max-width: 5rem;
   }
 }
@@ -52,7 +52,7 @@ footer {
   // background-color: cyan;
   // background-size: 0px 2px;
 
-  @include abstracts.tiny-screen {
+  @include abstracts.smaller-screen {
     max-width: 3rem;
     text-align: right;
   }
@@ -75,7 +75,7 @@ footer {
   }
   */
 
-  @include abstracts.tiny-screen {
+  @include abstracts.smaller-screen {
     padding: 0;
   }
 
@@ -99,7 +99,7 @@ footer {
   }
 }
 
-@include abstracts.tiny-screen {
+@include abstracts.smaller-screen {
   .madebyme a:after {
     content: none;
   }
