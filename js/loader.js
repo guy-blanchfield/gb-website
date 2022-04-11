@@ -8,8 +8,7 @@ const firstImgPromise = new Promise(function (resolve, reject) {
 
     firstImg.onload = function () {
         // console.log(firstImg.src + " is loaded!");
-        // return resolve();
-        resolve();
+        resolve('First image loaded');
     }
 
 });
@@ -20,20 +19,21 @@ const fontsPromise = new Promise(function (resolve, reject) {
         // console.log("Fonts are ready!");
         displayLogoIcon();
         displayNavToggleIcon();
-        resolve();
+        resolve('Fonts are ready!');
+        // reject('Fonts are not ready!');
     });
 
 });
 
-Promise.all([firstImgPromise, fontsPromise]).then(() => {
-    // console.log("The promises are resolved");
+Promise.all([firstImgPromise, fontsPromise]).then((results) => {
+    // console.log(results);
     // display the hero content with animation
     displayHeroContent(true);
     // should probably do the displaylogoIcon() as soon as the fonts are loaded
     // moved it into the fonts.ready.then()
     // displayLogoIcon();
-}).catch(() => {
-
+}).catch((err) => {
+    // console.log(err);
     // if something goes wrong just make the hero
     // content visible without the animation
     displayHeroContent(false);

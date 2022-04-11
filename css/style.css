@@ -274,12 +274,20 @@ a.logo-link {
 }
 
 .logo {
+  /* leave this out for now - it's nightmarish
+  @include abstracts.tiny-screen {
+    font-size: 0.8em;
+    // needs a bit of something to keep it level with nav toggle hamburger
+    // padding-top: 0.15rem;
+  }
+  */
   flex-direction: row;
   --gap: 0.25rem;
 }
 
 .logo-text {
   margin: 0;
+  padding-top: 0.02rem;
   padding-left: 0.1rem;
   font-size: 1.25rem;
   letter-spacing: -0.02rem;
@@ -292,7 +300,7 @@ a.logo-link {
 }
 
 .logo-icon {
-  margin-top: 0.2rem;
+  margin-top: 0.25rem;
   font-size: 0.8rem;
   visibility: hidden;
 }
