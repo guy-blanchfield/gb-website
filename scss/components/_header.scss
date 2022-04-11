@@ -19,9 +19,10 @@
   height: 5rem;
 
   position: fixed; /* Make it stick/fixed */
-  top: 0; /* Stay on top */
+  top: 0; /* Stay at top */
+
   z-index: 1000; // sits on top of most things - keep this, seriously
-  width: 100%; /* Full width */
+  width: 100vw; /* Full width */
   transition: top 1s; /* Transition effect when sliding down (and up) */ // (was 0.3s) also wants ome ease in or out
 }
 
@@ -47,6 +48,7 @@
 }
 
 .header-container {
+
   // header container already has flex utility class so specific flex rules can go here
   justify-content: space-between;
   // align-content: center;

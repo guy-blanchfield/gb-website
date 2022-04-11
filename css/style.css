@@ -229,9 +229,9 @@ img.lazy {
   position: fixed;
   /* Make it stick/fixed */
   top: 0;
-  /* Stay on top */
+  /* Stay at top */
   z-index: 1000;
-  width: 100%;
+  width: 100vw;
   /* Full width */
   transition: top 1s;
   /* Transition effect when sliding down (and up) */
@@ -274,28 +274,32 @@ a.logo-link {
 }
 
 .logo {
-  /* leave this out for now - it's nightmarish
-  @include abstracts.tiny-screen {
-    font-size: 0.8em;
-    // needs a bit of something to keep it level with nav toggle hamburger
-    // padding-top: 0.15rem;
-  }
-  */
   flex-direction: row;
   --gap: 0.25rem;
 }
 
 .logo-text {
   margin: 0;
-  padding-top: 0.02rem;
   padding-left: 0.1rem;
   font-size: 1.25rem;
+  letter-spacing: -0.02rem;
+}
+@media (max-width: 340px) {
+  .logo-text {
+    font-size: 1rem;
+    padding-top: 0.1rem;
+  }
 }
 
 .logo-icon {
-  margin-top: 0.25rem;
+  margin-top: 0.2rem;
   font-size: 0.8rem;
   visibility: hidden;
+}
+@media (max-width: 340px) {
+  .logo-icon {
+    font-size: 0.7rem;
+  }
 }
 
 .logo-icon.ready {

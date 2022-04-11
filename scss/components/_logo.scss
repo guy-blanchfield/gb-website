@@ -24,23 +24,10 @@ a.logo-link {
 
 // try setting font-sizes to em then control the size from
 // .logo div in rem with media query for tiny-screen
-
-// no - makes the icon shift around in its circle each time the header shows
+// nope - makes the icon shift around in its circle each time the header shows
 
 .logo {
 
-  // font-size: 1rem;
-
-  /* leave this out for now - it's nightmarish
-  @include abstracts.tiny-screen {
-    font-size: 0.8em;
-    // needs a bit of something to keep it level with nav toggle hamburger
-    // padding-top: 0.15rem;
-  }
-  */
-
-  //width: 500px;
-  // background-color: crimson;
   flex-direction: row;
   // align-content: flex-start;
 
@@ -53,33 +40,30 @@ a.logo-link {
   // border: 1px solid cyan;
   margin: 0;
   // push it down a touch, it's a bit high relative to the nav text and possibly the icon
-  padding-top: 0.02rem;
+  // padding-top: 0.02rem;
   // and push it away from the icon a touch
   padding-left: 0.1rem;
   font-size: 1.25rem;
-  // font-weight: 700;
-  // rem very slightly different to em with letter-spacing
-  // letter-spacing: -0.02rem;
-  // letter-spacing: -0.016em;
-  // text-transform: uppercase;
 
-  // maybe set color here so only the icon hovers?
-  // nah
-  // color: abstracts.$black;
+  // rem very slightly different to em with letter-spacing
+  letter-spacing: -0.02rem;
+  // letter-spacing: -0.016em;
+
+  @include abstracts.tiny-screen {
+    font-size: 1rem;
+    // needs a bit of something to keep it level with nav toggle hamburger
+    padding-top: 0.1rem;
+  }
 }
 
 .logo-icon {
-  // dedicated color for icon, darkgrey for now
-  // nah because it means the hover's got to be set twice
-  // leave it for now
-  // color: abstracts.$darkergrey;
-  // color: abstracts.$color-primary;
 
-  // border: 1px solid green;
-  // margin: 0.2rem 0 0 0;
-  margin-top: 0.25rem;
-  // margin-right: 0;
+  margin-top: 0.2rem;
   font-size: 0.8rem;
+
+  @include abstracts.tiny-screen {
+    font-size: 0.7rem;
+  }
 
   // hide until fonts are loaded - see fontsready.js
   visibility: hidden;
