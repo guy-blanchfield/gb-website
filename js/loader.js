@@ -4,43 +4,55 @@ const firstImg =  document.querySelector('[data-src="../img/content/png/bls_home
 // const firstImg =  document.querySelector('#bls-img');
 // console.log(firstImg.getAttribute('data-src'));
 
-const firstImgPromise = new Promise(function (resolve, reject) {
 
-    firstImg.onload = function () {
-        // console.log(firstImg.src + " is loaded!");
-        resolve('First image loaded');
-    }
+async function checkImageLoaded(img) {
+    
+    // console.log(`loading ${img.id}, please!`);
+    return new Promise((resolve, reject) => {
 
-});
+        img.onload = () => {
+            console.log(`loaded ${img.id}, yay!`);
+            resolve('First image loaded');
+        }
 
-const fontsPromise = new Promise(function (resolve, reject) {
+        img.onerror = () => {
+            // console.log(firstImg.src + " is loaded!");
+            reject('There was a problem with the image');
+        }
 
-    document.fonts.ready.then(function() {
-        // console.log("Fonts are ready!");
-        displayLogoIcon();
-        displayNavToggleIcon();
-        resolve('Fonts are ready!');
-        // reject('Fonts are not ready!');
+        // for some reason this doesn't work, so do it the long way
+        // img.onload = resolve('First image loaded');
+        // img.onerror = reject('There was a problem with the image');
+
     });
+}
 
-});
+async function checkFontsLoaded() {
 
-Promise.all([firstImgPromise, fontsPromise]).then((results) => {
-    // console.log(results);
+    await document.fonts.ready;
+    console.log("Fonts are ready! (from the async function)");
+    displayLogoIcon();
+    displayNavToggleIcon();
+    return('Fonts are ready!');
+    // reject('Fonts are not ready!');
+};
+
+
+
+// try an async iife for the promises, instead of promise.all.then
+(async () => {
+    // const results = await Promise.all([firstImgPromise, fontsPromise]);
+    const results = await Promise.all([checkImageLoaded(firstImg), checkFontsLoaded()]);
+    console.log(results);
     // display the hero content with animation
     displayHeroContent(true);
-    // should probably do the displaylogoIcon() as soon as the fonts are loaded
-    // moved it into the fonts.ready.then()
-    // displayLogoIcon();
-}).catch((err) => {
-    // console.log(err);
+})().catch((err) => {
     // if something goes wrong just make the hero
     // content visible without the animation
+    console.log(err);
     displayHeroContent(false);
-
 });
 
-// no real error handling for now
 
 function displayLogoIcon() {
 
@@ -54,7 +66,7 @@ function displayLogoIcon() {
 }
 
 // also hide the navtoggle until fonts have loaded
-// it's also using font awesome
+// because it's also using font awesome
 
 function displayNavToggleIcon() {
 
@@ -66,6 +78,8 @@ function displayNavToggleIcon() {
     }
 }
 
+// animation parameter takes boolean arg 
+// as to whether or not to do the hero animation
 function displayHeroContent(animation) {
 
     const heroContent = document.querySelector('.hero-content');
@@ -92,7 +106,7 @@ function displayHeroContent(animation) {
 
     }
     
-    // if animation != true just make the hero content visible
+    // if !animation just make the hero content visible
     if (!heroContent.classList.contains('ready')) {
         heroContent.classList.add('ready');
         // console.log('add class ready!');
