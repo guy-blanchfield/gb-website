@@ -7,7 +7,7 @@ const firstImg =  document.querySelector('[data-src="../img/content/png/bls_home
 const firstImgPromise = new Promise(function (resolve, reject) {
 
     firstImg.onload = function () {
-        console.log(firstImg.src + " is loaded!");
+        // console.log(firstImg.src + " is loaded!");
         // return resolve();
         resolve();
     }
@@ -17,15 +17,16 @@ const firstImgPromise = new Promise(function (resolve, reject) {
 const fontsPromise = new Promise(function (resolve, reject) {
 
     document.fonts.ready.then(function() {
-        console.log("Fonts are ready!");
+        // console.log("Fonts are ready!");
         displayLogoIcon();
+        displayNavToggleIcon();
         resolve();
     });
 
 });
 
 Promise.all([firstImgPromise, fontsPromise]).then(() => {
-    console.log("The promises are resolved");
+    // console.log("The promises are resolved");
     // display the hero content with animation
     displayHeroContent(true);
     // should probably do the displaylogoIcon() as soon as the fonts are loaded
@@ -39,7 +40,7 @@ Promise.all([firstImgPromise, fontsPromise]).then(() => {
 
 });
 
-// no error handling for now
+// no real error handling for now
 
 function displayLogoIcon() {
 
@@ -50,6 +51,19 @@ function displayLogoIcon() {
         // console.log('add class ready!');
     }
 
+}
+
+// also hide the navtoggle until fonts have loaded
+// it's also using font awesome
+
+function displayNavToggleIcon() {
+
+    const navToggleIcon = document.querySelector('.mobile-nav-toggle-icon');
+    
+    if (!navToggleIcon.classList.contains('ready')) {
+        navToggleIcon.classList.add('ready');
+        // console.log('add class ready!');
+    }
 }
 
 function displayHeroContent(animation) {
@@ -66,7 +80,7 @@ function displayHeroContent(animation) {
         heroH2Spans.forEach((span, index) => {
             if (!span.classList.contains(heroH2SpanClasses[index])) {
                 span.classList.add(heroH2SpanClasses[index]);
-                console.log('adding class ' + heroH2SpanClasses[index]);
+                // console.log('adding class ' + heroH2SpanClasses[index]);
             }
         });
 

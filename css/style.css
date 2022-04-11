@@ -274,28 +274,27 @@ a.logo-link {
 }
 
 .logo {
-  font-size: 1rem;
+  /* leave this out for now - it's nightmarish
+  @include abstracts.tiny-screen {
+    font-size: 0.8em;
+    // needs a bit of something to keep it level with nav toggle hamburger
+    // padding-top: 0.15rem;
+  }
+  */
   flex-direction: row;
   --gap: 0.25rem;
-}
-@media (max-width: 340px) {
-  .logo {
-    font-size: 0.8rem;
-    padding-top: 0.15em;
-  }
 }
 
 .logo-text {
   margin: 0;
   padding-top: 0.02rem;
   padding-left: 0.1rem;
-  font-size: 1.25em;
-  letter-spacing: -0.016em;
+  font-size: 1.25rem;
 }
 
 .logo-icon {
-  margin-top: 0.25em;
-  font-size: 0.8em;
+  margin-top: 0.25rem;
+  font-size: 0.8rem;
   visibility: hidden;
 }
 
@@ -324,7 +323,6 @@ a.logo-link {
 
 .hero-content {
   max-width: max-content;
-  visibility: hidden;
 }
 
 .hero-content.ready {
@@ -736,6 +734,14 @@ a .article-work:hover img {
     right: 1.6rem;
   }
 }
+.mobile-nav-toggle-icon {
+  visibility: hidden;
+}
+
+.mobile-nav-toggle-icon.ready {
+  visibility: visible;
+}
+
 footer {
   color: #596373;
   background-color: #2c323a;

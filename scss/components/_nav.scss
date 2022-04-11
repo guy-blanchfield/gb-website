@@ -175,6 +175,7 @@
   }
 
   .mobile-nav-toggle {
+
     display: block;
     position: absolute;
     // king of z-indexes - above everyone else
@@ -203,6 +204,15 @@
   // .mobile-nav-toggle[aria-expanded="true"] {
   //     background: url('../../assets/vendor/fontawesome/svgs/solid/xmark.svg');
   // }
+}
+
+.mobile-nav-toggle-icon {
+  // hide until fonts have loaded - it's using font-awesome
+  visibility: hidden;
+}
+
+.mobile-nav-toggle-icon.ready {
+  visibility: visible;
 }
 
 // .main-nav-list li {
