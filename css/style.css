@@ -323,6 +323,7 @@ a.logo-link {
 
 .hero-content {
   max-width: max-content;
+  visibility: hidden;
 }
 
 .hero-content.ready {
