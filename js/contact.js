@@ -243,7 +243,7 @@ function errorMessage(form, input, text) {
 
 // try as async await
 // https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Promises#async_and_await
-function fetchForm() {
+async function fetchForm() {
 
   // add the input values to the object
   contactObj = {
@@ -255,43 +255,45 @@ function fetchForm() {
     token: recaptchaResponse
   };
 
-  // console.log('Doing the fetch function');
+  console.log('Doing the fetch function');
 
-  // do the fetch
-  fetch('php/contact_process.php', {
-    method: 'post',
-    body: JSON.stringify(contactObj),
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
-    .then(function (response) {
-      // this gets the text of the response and returns it to the next .then
-      // which uses it as an argument in its function
+  try {
 
-      return response.text();
-    })
-    .then(function (text) {
-      // console.log(text);
-
-      // success!
-
-      // following was named function (successMessage();)
-      // but it was only called once and is just two other function calls
-
-      // hide the submit button
-      setVisible(contactsubmit, false);
-
-      // show the success message
-      setVisible(contactsuccess, true);
-
-      // maybe clear the form?
-      // maybe show a reset form button?
-
-    })
-    .catch(function (error) {
-      // console.error(error);
+    // await the fetch
+    const fetchResponse = await fetch('php/contact_process.php', {
+      method: 'post',
+      body: JSON.stringify(contactObj),
+      headers: {
+        'Content-Type': 'application/json',
+      }
     });
+
+    if (!fetchResponse.ok) {
+      throw new Error(`HTTP error: ${fetchResponse.status}`);
+    }
+
+    // wait for the response.text() call to be settled
+    const text = await fetchResponse.text();
+
+    console.log(`Fetch response: ${text}`);
+
+    // following was named function (successMessage();)
+    // but it was only called once and is just two other function calls
+
+    // hide the submit button
+    setVisible(contactsubmit, false);
+
+    // show the success message
+    setVisible(contactsuccess, true);
+
+  }
+
+  catch {
+
+    // do something with the error
+    console.error(`Could not do the fetch: ${error}`);
+
+  }
 
 }
 
