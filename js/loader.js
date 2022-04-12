@@ -11,7 +11,7 @@ async function checkImageLoaded(img) {
     return new Promise((resolve, reject) => {
 
         img.onload = () => {
-            console.log(`loaded ${img.id}, yay!`);
+            // console.log(`loaded ${img.id}, yay!`);
             resolve('First image loaded');
         }
 
@@ -30,7 +30,7 @@ async function checkImageLoaded(img) {
 async function checkFontsLoaded() {
 
     await document.fonts.ready;
-    console.log("Fonts are ready! (from the async function)");
+    // console.log("Fonts are ready! (from the async function)");
     displayLogoIcon();
     displayNavToggleIcon();
     return('Fonts are ready!');
@@ -43,13 +43,13 @@ async function checkFontsLoaded() {
 (async () => {
     // const results = await Promise.all([firstImgPromise, fontsPromise]);
     const results = await Promise.all([checkImageLoaded(firstImg), checkFontsLoaded()]);
-    console.log(results);
+    // console.log(results);
     // display the hero content with animation
     displayHeroContent(true);
 })().catch((err) => {
     // if something goes wrong just make the hero
     // content visible without the animation
-    console.log(err);
+    // console.log(err);
     displayHeroContent(false);
 });
 
