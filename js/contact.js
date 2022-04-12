@@ -22,14 +22,12 @@ inputnames.forEach(n => {
 });
 
 
-
 // tracks whether the form has been changed
 // to allow on blur validation
 // don't want to validate if user is just tabbing through
 // only if they've started filling in the form
 // this is set to true on form change event
 let allowblurvalidate = false;
-
 
 // the recaptcha response token
 let recaptchaResponse = '';
@@ -40,36 +38,10 @@ contactform.addEventListener('change', () => {
   allowblurvalidate = true;
 });
 
-// eventlisteners for inputs
-// should functions bind with arguments
-// instead of calling through anonymous function?
-
-contactname.addEventListener('blur', () => {
-  if (allowblurvalidate == true) {
-    validateInput('contactname');
-  }
-});
-contactemail.addEventListener('blur', () => {
-  if (allowblurvalidate == true) {
-    validateInput('contactemail');
-
-    // validate the contactname here as well
-    // given that it's not required, user might never 
-    // cause it to blur, and the submit button won't get activated
-
-    // could have put this in the contactmessage eventlistener
-    // it makes no odds, just as long as it's coming from one of the 
-    // required inputs
-    validateInput('contactname');
-
-  }
-});
-contactmessage.addEventListener('blur', () => {
-  if (allowblurvalidate == true) {
-    validateInput('contactmessage');
-  }
-});
-
+// eventlistener for input focusouts/ blurs
+// callback function is a dedicated function that takes the event
+// and calls validateInput with the appropriate argument
+contactform.addEventListener('focusout', focusEventHandler);
 
 // eventlistener for submit
 contactform.addEventListener('submit', (e) => {
@@ -77,6 +49,34 @@ contactform.addEventListener('submit', (e) => {
   e.preventDefault();
   validateForm('submit');
 });
+
+// little function to remove hyphen from input names (e.target.name)
+// so we can keep the const names as a different naming format (i.e. not hyphenated!)
+// at the moment it's only used by focusEventHandler but might come in handy
+
+function removeHyphen(str) {
+  // const splitstr = str.split('-');
+  // const newstr = splitstr.join('');
+  // return newstr;
+  return str.split('-').join('');
+}
+
+function focusEventHandler(e) {
+
+  // exit the function if allowblurvalidate isn't true
+  if (!allowblurvalidate) return;
+
+  // check the event target, if it's input or textarea we want it
+  if (e.target.nodeName == 'INPUT' || e.target.nodeName == 'TEXTAREA') {
+    
+    const input = removeHyphen(e.target.name);
+
+    console.log('input: ' + input);
+    // call the input validater function
+    validateInput(input);
+  }
+
+}
 
 
 // function to check if all the inputs are valid
@@ -105,11 +105,7 @@ function validateForm(input) {
   // console.log('validating form with input: ' + input);
 
   // check all the inputs
-  inputnames.forEach(n => {
-
-    validateInput(n);
-  
-  });
+  inputnames.forEach(n => validateInput(n));
 
   // ============= submit ===========================
 
@@ -127,23 +123,15 @@ function validateForm(input) {
   } else {
 
     // console.log('Not fetching form');
-    //return false;
-    /*
-    console.log(
-      'Not fetching form because formvalid is ' +
-        formvalid +
-        ' and input is ' +
-        input
-    );
-    */
     // see https://stackoverflow.com/questions/16861325/honeypot-implementation
+
   }
 }
 
 // right, gonna try a separate function for the blur validation
 function validateInput(input) {
 
-    // console.log('validating input with input: ' + input);
+    console.log('validating input with input: ' + input);
 
     let errorMsg = '';
 
@@ -153,6 +141,10 @@ function validateInput(input) {
       case 'contactname':
 
         // name not required, still needs check for maxlength though
+
+        // NB there's a validateInput for name in verifyRecaptcha
+        // just in case it doesn't get validated by a focusEvent
+
         /*
         if (contactname.value === '' || contactname == null) {
           errorMessage('contact', 'name', 'Name is required');
@@ -222,6 +214,7 @@ function validateInput(input) {
       disableSubmit(false);
 
     } else {
+
       // in case anything's changed since last validateinput
       // console.log('Form is bad');
       disableSubmit(true);
@@ -233,9 +226,6 @@ function validateInput(input) {
 function errorMessage(form, input, text) {
 
   // console.log('errorMessage function for ' + form + '-' + input + '-error');
-
-  // errors += text;
-  // console.log('errors is: ' + errors);
 
   // update the inputsStatus object
   inputsStatus[form + input].valid = (text.length > 0) ? false : true;
@@ -251,6 +241,8 @@ function errorMessage(form, input, text) {
 
 }
 
+// try as async await
+// https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Promises#async_and_await
 function fetchForm() {
 
   // add the input values to the object
@@ -310,6 +302,11 @@ function verifyRecaptcha(token) {
 
   // right gonna try this as part of the validation!
   validateInput('contactrecaptcha');
+
+  // also validate the name input here as well 
+  // in case it's never been focusouted
+  // if it doesn't get validated the submit button won't activate
+  validateInput('contactname');
 
 }
 
@@ -376,6 +373,3 @@ function setVisible(element, visible) {
   element.setAttribute('aria-hidden', ariaHidden);
 
 }
-
-//document.getElementById('testsend').addEventListener('click', displayLoading);
-//document.getElementById('testsuccess').addEventListener('click', successMessage);
