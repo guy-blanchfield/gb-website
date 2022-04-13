@@ -47,7 +47,10 @@ contactform.addEventListener('focusout', focusEventHandler);
 contactform.addEventListener('submit', (e) => {
   // console.log("submitted");
   e.preventDefault();
-  validateForm('submit');
+  // don't need an argument with validateForm anymore
+  // it's only ever called by the submit event
+  // validateForm('submit');
+  validateForm();
 });
 
 // little function to remove hyphen from input names (e.target.name)
@@ -71,7 +74,7 @@ function focusEventHandler(e) {
     
     const input = removeHyphen(e.target.name);
 
-    console.log('input: ' + input);
+    // console.log('input: ' + input);
     // call the input validater function
     validateInput(input);
   }
@@ -100,9 +103,11 @@ function checkInputsValid() {
 }
 
 // validates the whole form
-function validateForm(input) {
+// doesn't take any parameters anymore as
+// it's only ever called by the submit event
+function validateForm() {
 
-  // console.log('validating form with input: ' + input);
+  // console.log('validating form');
 
   // check all the inputs
   inputnames.forEach(n => validateInput(n));
@@ -110,7 +115,7 @@ function validateForm(input) {
   // ============= submit ===========================
 
   // send the form if all the inputs are valid and formValidate was called from submit (input === 'submit')
-  if (input === 'submit' && checkInputsValid() === true) {
+  if (checkInputsValid() === true) {
 
     // console.log('Fetching form because formvalid is ' + formvalid);
     // console.log('and honeypot value length is ' + contactnickname.value.length);
@@ -131,7 +136,7 @@ function validateForm(input) {
 // right, gonna try a separate function for the blur validation
 function validateInput(input) {
 
-    console.log('validating input with input: ' + input);
+    // console.log('validating input with input: ' + input);
 
     let errorMsg = '';
 
@@ -246,7 +251,7 @@ function errorMessage(form, input, text) {
 async function fetchForm() {
 
   // add the input values to the object
-  contactObj = {
+  const contactObj = {
 
     name: contactname.value,
     email: contactemail.value,
@@ -255,7 +260,7 @@ async function fetchForm() {
     token: recaptchaResponse
   };
 
-  console.log('Doing the fetch function');
+  // console.log('Doing the fetch function');
 
   try {
 
@@ -275,7 +280,7 @@ async function fetchForm() {
     // wait for the response.text() call to be settled
     const text = await fetchResponse.text();
 
-    console.log(`Fetch response: ${text}`);
+    // console.log(`Fetch response: ${text}`);
 
     // following was named function (successMessage();)
     // but it was only called once and is just two other function calls
