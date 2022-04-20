@@ -103,6 +103,19 @@ $input-width: 525px;
   // and so it doesn't flow to the right of the input (at least for now!)
   display: block;
   min-height: 1.5rem;
+  overflow: hidden;
+}
+
+// inner span, does the slide up / down transition
+.contact-error-content {
+  display: block; // required for transform/translate/transition
+  transform: translateY(-100%);
+  // default transition duration will be fine
+  //transition-duration: 500ms;
+}
+
+.contact-error-content.show {
+  transform: translateY(0);
 }
 
 .contact-success {

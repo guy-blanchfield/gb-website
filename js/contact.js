@@ -239,11 +239,30 @@ function errorMessage(form, input, text) {
   // console.log('valid: ' + inputsStatus[form + input].valid);
   // console.log('errormsg: ' + inputsStatus[form + input].errormsg);
 
+  // get a refrence to the errormessage element
+  const errorElement = document.querySelector('#' + form + '-' + input + '-error .contact-error-content');
+  // template literal version
+  // const errorElement = document.querySelector(`#${form}-${input}-error .contact-error-content`);
+  
   // set the error message
-  document.getElementById(form + '-' + input + '-error').textContent = text;
-  // and the hidden error message
-  document.getElementById(form + '-' + input + '-error-hidden').textContent = text;
 
+  // if errormessage is blank (i.e. input has passed validation)
+  // we don't need to update, just hide the errormessage, otherwise
+  // message will just disappear rather than transition
+  // the error message will still get updated in the inputsStatus obj
+  // and in the accessible sr-only error (inside the label)
+  if (text.length > 0) {
+
+    errorElement.textContent = text;
+    errorElement.classList.add('show');
+
+  } else {
+    errorElement.classList.remove('show');
+  }
+
+  
+  // console.log(targetElement);
+  
 }
 
 // try as async await
@@ -293,7 +312,7 @@ async function fetchForm() {
 
   }
 
-  catch {
+  catch (error) {
 
     // do something with the error
     console.error(`Could not do the fetch: ${error}`);
@@ -320,8 +339,38 @@ function verifyRecaptcha(token) {
 // for when the recaptcha expires - see html attribute data-expired-callback="handleCaptchaExpired"
 // data-expired-callback now just calls resetForm
 // the dedicated handleCaptchaExpired() function was only calling resetForm anyway!
+function recaptchaExpired() {
+
+  // console.log('recaptcha expired!');
+  recaptchaResponse = '';
+
+  // right gonna try this as part of the validation!
+  validateInput('contactrecaptcha');
+
+  // might need to do these here
+
+  // if form has submitted sucessfully, but recaptcha is expired, 
+  // hide the success message
+  setVisible(contactsuccess, false);
+  
+  // reset the submit button
+  contactsubmit.textContent = 'Send Message'
+
+  // validateInput will have taken care of this
+  // disableSubmit(true);
+
+  // show the submit button (needed if form had already been submitted
+  // successfully - b/c that shows the success message and hides the submit button)
+  setVisible(contactsubmit, true);
+
+}
+
+// resetForm was the callback for the recaptcha expire
+// now using recaptchaExpired() above
+/*
 function resetForm() {
 
+  console.log('verification expired!')
   // reset recaptcha response
   recaptchaResponse = '';
 
@@ -336,6 +385,7 @@ function resetForm() {
   setVisible(contactsubmit, true);
 
 }
+*/
 
 // when fetch starts (when submit passes all the validation)
 function displayLoading() {

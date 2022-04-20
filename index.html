@@ -57,7 +57,7 @@
         // real key
         'sitekey' : '6LdkTv8eAAAAACbcTcH1vGHMCz59nuDMd3C_Tbgr',
         'callback' : 'verifyRecaptcha',
-        'expired-callback' : "resetForm"
+        'expired-callback' : "recaptchaExpired"
       });
 
     };
@@ -476,7 +476,7 @@
                   <span class="sr-only" id="contact-name-error-hidden"></span>
                 </label><!--<br> -->
                 <input type="text" name="contact-name" id="contact-name" class="contact-input" value="" maxlength="50">
-                <div class="contact-error" id="contact-name-error" aria-hidden="true"><!-- empty to start --></div>
+                <div class="contact-error" id="contact-name-error" aria-hidden="true"><span class="contact-error-content"><!-- empty to start --></span></div>
 
                 <!-- ============== nickname ==============-->
                 <label for="contact-nickname" aria-hidden="true" class="user-cannot-see"> Nickname
@@ -497,7 +497,7 @@
                 </label>
                 <input type="email" name="contact-email" id="contact-email" class="contact-input" value="" maxlength="254" required>
                 
-                <div class="contact-error" id="contact-email-error" aria-hidden="true"><!-- empty to start --></div>
+                <div class="contact-error" id="contact-email-error" aria-hidden="true"><span class="contact-error-content"><!-- empty to start --></span></div>
                 
                 <!-- ============== message ==============-->
                 
@@ -506,7 +506,7 @@
                   <span class="sr-only" id="contact-message-error-hidden"></span>
                 </label>
                 <textarea name="contact-message" id="contact-message" class="contact-input" rows="6" maxlength="6000" required></textarea>
-                <div class="contact-error" id="contact-message-error" aria-hidden="true"><!-- empty to start --></div>
+                <div class="contact-error" id="contact-message-error" aria-hidden="true"><span class="contact-error-content"><!-- empty to start --></span></div>
                 
                 
                 
@@ -515,7 +515,7 @@
                 <!-- recaptcha explicit rendering -->
                 <div id="contact-recaptcha" class="g-recaptcha"></div>
                 <span class="sr-only" id="contact-recaptcha-error-hidden"></span>
-                <div class="contact-error" id="contact-recaptcha-error" aria-hidden="true"></div>
+                <div class="contact-error" id="contact-recaptcha-error" aria-hidden="true"><span class="contact-error-content"><!-- empty to start --></span></div>
 
 
                 <!-- ============== submit ==============-->
