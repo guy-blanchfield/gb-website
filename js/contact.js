@@ -337,8 +337,6 @@ function verifyRecaptcha(token) {
 }
 
 // for when the recaptcha expires - see html attribute data-expired-callback="handleCaptchaExpired"
-// data-expired-callback now just calls resetForm
-// the dedicated handleCaptchaExpired() function was only calling resetForm anyway!
 function recaptchaExpired() {
 
   // console.log('recaptcha expired!');
