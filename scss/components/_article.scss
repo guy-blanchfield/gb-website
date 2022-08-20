@@ -170,6 +170,28 @@ a .article-work:hover img {
   }
 }
 
+.article-about-skills ul.ul-nested {
+  color: abstracts.$darkmidgrey;
+  list-style: none;
+  padding: 0;
+  margin: 0.3rem 0 0 0;
+  font-size: 0.8rem;
+  // font-weight: bold;
+
+  li {
+    margin: 0.1rem 0;
+    padding-left: 1rem;
+  }
+
+  li::before {
+    // content: "• ";
+    // \00a0 is nbsp
+    // 9656	25B8
+    content: '\25B8 \00a0 ';
+    color: abstracts.$darkmidgrey;
+  }
+}
+
 .article-about-skills p,
 .article-about-education p {
   // just stick the max-width on here for now

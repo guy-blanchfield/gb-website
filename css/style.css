@@ -540,6 +540,22 @@ a .article-work:hover img {
   color: #c5cbd3;
 }
 
+.article-about-skills ul.ul-nested {
+  color: #8c96a6;
+  list-style: none;
+  padding: 0;
+  margin: 0.3rem 0 0 0;
+  font-size: 0.8rem;
+}
+.article-about-skills ul.ul-nested li {
+  margin: 0.1rem 0;
+  padding-left: 1rem;
+}
+.article-about-skills ul.ul-nested li::before {
+  content: "▸ ";
+  color: #8c96a6;
+}
+
 .article-about-skills p,
 .article-about-education p {
   margin-top: 0.5rem;
