@@ -1,40 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- stop this page appearing in search engine results -->
-    <meta name="robots" content="noindex">
+    <meta name="robots" content="noindex" />
 
-    <meta name="author" content="Guy Blanchfield">
-    <meta name="description" content="I'm Guy. I make things for the web.">
-
+    <meta name="author" content="Guy Blanchfield" />
+    <meta name="description" content="I'm Guy. I make things for the web." />
 
     <title>Guy Blanchfield &#187; Web Developer</title>
 
-    <link rel="stylesheet" href="css/style.css">
-
+    <link rel="stylesheet" href="css/style.css" />
 
     <!-- Font Awesome -->
 
-    <link href="./assets/vendor/fontawesome/css/fontawesome.min.css" rel="stylesheet">
-    <link href="./assets/vendor/fontawesome/css/solid.min.css" rel="stylesheet">
-    
+    <link
+      href="./assets/vendor/fontawesome/css/fontawesome.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="./assets/vendor/fontawesome/css/solid.min.css"
+      rel="stylesheet"
+    />
 
     <!-- Favicon Generator https://favicon.io/ -->
 
-    <link rel="apple-touch-icon" sizes="180x180" href="./assets/vendor/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="./assets/vendor/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="./assets/vendor/favicon/favicon-16x16.png">
-    <link rel="manifest" href="./assets/vendor/favicon/site.webmanifest">
-
-      
-
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./assets/vendor/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/vendor/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="./assets/vendor/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="./assets/vendor/favicon/site.webmanifest" />
 
     <!-- js -->
-    
+
     <script src="./js/loader.js" defer></script>
     <script src="./js/lazyloadimages.js" defer></script>
     <script src="./js/contact.js" defer></script>
@@ -46,541 +59,575 @@
 
     <!-- safest to put recaptcha inline, external was unreliable -->
     <script>
+      // recaptcha - explicit rendering - onload callback
+      // NB has to be var! and also anonymous function
 
-    // recaptcha - explicit rendering - onload callback
-    // NB has to be var! and also anonymous function
-
-    var onloadCallback = function() {
-      grecaptcha.render('contact-recaptcha', {
-        // test key
-        // 'sitekey' : '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI',
-        // real key
-        'sitekey' : '6LdkTv8eAAAAACbcTcH1vGHMCz59nuDMd3C_Tbgr',
-        'callback' : 'verifyRecaptcha',
-        'expired-callback' : "recaptchaExpired"
-      });
-
-    };
-
+      var onloadCallback = function () {
+        grecaptcha.render('contact-recaptcha', {
+          // test key
+          // 'sitekey' : '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI',
+          // real key
+          sitekey: '6LdkTv8eAAAAACbcTcH1vGHMCz59nuDMd3C_Tbgr',
+          callback: 'verifyRecaptcha',
+          'expired-callback': 'recaptchaExpired',
+        })
+      }
     </script>
 
-    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
-    async defer>
-    </script>
- 
+    <script
+      src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+      async
+      defer
+    ></script>
+  </head>
 
-</head>
-
-
-<body>
-    
-<!-- ============== header =================== -->
+  <body>
+    <!-- ============== header =================== -->
 
     <header class="header">
-
       <!-- skip to main content hidden link -->
       <a class="skip-to-main-link" href="#main-content">Skip to main content</a>
 
-
       <!-- container div controls width and centring - see layouts/home -->
       <div class="container flex header-container">
-
-
         <a href="#top" class="logo-link">
-        <div class="logo flex">
-        
+          <div class="logo flex">
+            <div class="fa-stack logo-icon">
+              <i class="fa-solid fa-circle fa-stack-2x"></i>
+              <i class="fa-solid fa-g fa-stack-1x logo-icon--inner"></i>
+            </div>
 
-          <div class="fa-stack logo-icon">
-            <i class="fa-solid fa-circle fa-stack-2x"></i>
-            <i class="fa-solid fa-g fa-stack-1x logo-icon--inner"></i>
+            <h1 class="logo-text">Guy Blanchfield</h1>
           </div>
+        </a>
 
-          <h1 class="logo-text">Guy Blanchfield</h1>
+        <!-- ============== nav =================== -->
 
-        
-        </div>
-      </a>
-      
-
-
-    <!-- ============== nav =================== -->
-
-        <button class="mobile-nav-toggle" aria-controls="primary-navigation" aria-expanded="false" type="button">
+        <button
+          class="mobile-nav-toggle"
+          aria-controls="primary-navigation"
+          aria-expanded="false"
+          type="button"
+        >
           <span class="sr-only">Menu</span>
 
           <i class="mobile-nav-toggle-icon fas fa-bars"></i>
         </button>
-        
+
         <nav class="main-nav flex">
-
-            <ul id="primary-navigation" data-visible="false" class="main-nav-list flex">
-              <li>
-                <a href="#work">Work</a>
-              </li>
-              <li>
-                <a href="#about">About</a>
-              </li>
-              <li>
-                <a href="#contact">Contact</a>
-              </li>
-            </ul>
-
+          <ul
+            id="primary-navigation"
+            data-visible="false"
+            class="main-nav-list flex"
+          >
+            <li>
+              <a href="#work">Work</a>
+            </li>
+            <li>
+              <a href="#about">About</a>
+            </li>
+            <li>
+              <a href="#contact">Contact</a>
+            </li>
+          </ul>
         </nav>
 
-<!-- ============== end nav =================== -->
-        
-
+        <!-- ============== end nav =================== -->
       </div>
       <!-- ============== end .container =================== -->
-        
-
     </header>
-<!-- ============== end header =================== -->
+    <!-- ============== end header =================== -->
 
-
-
-
-
-<!-- ============== main =================== -->
+    <!-- ============== main =================== -->
     <main id="main-content">
-
-    <!-- ============== hero =================== -->    
-        <section class="hero">
-
-          <div class="container grid">
-
-            <div class="hero-content">
-            
+      <!-- ============== hero =================== -->
+      <section class="hero">
+        <div class="container grid">
+          <div class="hero-content">
             <h2>
               <!-- greeting classes now get added with js -->
-              <span>Hi,</span> <span>I&#8217m</span> <span>Guy.</span>
+              <span>Hi,</span> <span>I&#8217;m</span> <span>Guy.</span>
             </h2>
-            
+
             <!-- typewiter class now gets added with js -->
             <p>I make things for the web.</p>
-            
-            </div>
-
           </div>
+        </div>
+      </section>
 
-        </section>
+      <!-- ============== work =================== -->
 
-        
-    
-    <!-- ============== work =================== -->
+      <section id="work" class="section-work">
+        <div class="container section-container grid">
+          <header class="section-header">
+            <h2>Work</h2>
+          </header>
 
-        <section id="work" class="section-work">
-
-
-          <div class="container section-container grid">
-
-            <header class="section-header">
-
-              <h2>Work</h2>
-
-            </header>
-
-            
-            <div>
-
+          <div>
             <article class="article-work grid fade-in" id="bootslearningstore">
-                <!-- id on this img just for testing -->
-                <img id="bls-img" loading="lazy" class="lazy saturate-in" data-src="../img/content/png/bls_home_crop.png" alt="Boots Learning Store Homepage" width="600" height="450">
-            
-                <div class="article-work-content">
+              <!-- id on this img just for testing -->
+              <img
+                id="bls-img"
+                loading="lazy"
+                class="lazy saturate-in"
+                data-src="../img/content/png/bls_home_crop.png"
+                alt="Boots Learning Store Homepage"
+                width="600"
+                height="450"
+              />
 
+              <div class="article-work-content">
                 <header>
-
-                <p>Website</p>
-                <h3>Boots Learning Store</h3>
-                  
+                  <p>Website</p>
+                  <h3>Boots Learning Store</h3>
                 </header>
 
                 <p>Science and PSHE education website for Boots</p>
-                
-                </div>
-            
-              </article>
+              </div>
+            </article>
 
+            <article
+              class="article-work grid fade-in"
+              id="succeedingwithscience"
+            >
+              <img
+                loading="lazy"
+                class="lazy saturate-in"
+                data-src="../img/content/png/sws_home.png"
+                alt="Succeeding With Science Homepage"
+                width="600"
+                height="450"
+              />
 
-
-              <article class="article-work grid fade-in" id="succeedingwithscience">
-  
-                  <img loading="lazy" class="lazy saturate-in" data-src="../img/content/png/sws_home.png" alt="Succeeding With Science Homepage" width="600" height="450">
-              
-                  
-                  <div class="article-work-content">
-  
-                  <header>
-
+              <div class="article-work-content">
+                <header>
                   <p>Website</p>
                   <h3>Succeeding With Science</h3>
-                    
-                  </header>
-  
-                  <p>Science and technology education website for <span class="nowrap">Sellafield</span></p>
-                  
-                  
-                  </div>
-              
-                </article>
+                </header>
 
+                <p>
+                  Science and technology education website for
+                  <span class="nowrap">Sellafield</span>
+                </p>
+              </div>
+            </article>
 
-                <article class="article-work grid fade-in" id="letzgogreen">
-  
-                  <img loading="lazy" class="lazy saturate-in" data-src="../img/content/png/lgg_home.png" alt="Letzgogreen Homepage" width="600" height="450">
-              
-                  
-                  <div class="article-work-content">
-  
-                  <header>
-                    
+            <article class="article-work grid fade-in" id="letzgogreen">
+              <img
+                loading="lazy"
+                class="lazy saturate-in"
+                data-src="../img/content/png/lgg_home.png"
+                alt="Letzgogreen Homepage"
+                width="600"
+                height="450"
+              />
+
+              <div class="article-work-content">
+                <header>
                   <p>Website</p>
                   <h3>LetzGoGreen</h3>
-                    
-                  </header>
-  
-                  <p>Sustainable travel education website for Centro</p>
+                </header>
 
-              
-                  </div>
-              
-                </article>
+                <p>Sustainable travel education website for Centro</p>
+              </div>
+            </article>
 
+            <article class="article-work grid fade-in" id="britishwoollearning">
+              <img
+                loading="lazy"
+                class="lazy saturate-in"
+                data-src="../img/content/png/bwmb_home.png"
+                alt="British Wool Learning Homepage"
+                width="600"
+                height="450"
+              />
 
-                <article class="article-work grid fade-in" id="britishwoollearning">
-  
-                  <img loading="lazy" class="lazy saturate-in" data-src="../img/content/png/bwmb_home.png" alt="British Wool Learning Homepage" width="600" height="450">
-              
-                  
-                  <div class="article-work-content">
-  
-                  <header>
-
+              <div class="article-work-content">
+                <header>
                   <p>Website</p>
                   <h3>British Wool Learning</h3>
-                    
-                  </header>
-  
-                  <p>Primary education website for <span class="nowrap">British Wool</span></p>
-                  
-                  
+                </header>
 
-              
-                  </div>
-              
-                </article>
+                <p>
+                  Primary education website for
+                  <span class="nowrap">British Wool</span>
+                </p>
+              </div>
+            </article>
 
+            <article class="article-work grid fade-in" id="changingstates">
+              <img
+                loading="lazy"
+                class="lazy saturate-in"
+                data-src="../img/content/png/changingstates_liquid_room.png"
+                alt="Changing States Screenshot"
+                width="600"
+                height="450"
+              />
 
-                
-
-
-                <article class="article-work grid fade-in" id="changingstates">
-  
-                  <img loading="lazy" class="lazy saturate-in" data-src="../img/content/png/changingstates_liquid_room.png" alt="Changing States Screenshot" width="600" height="450">
-              
-                  
-                  <div class="article-work-content">
-  
-                  <header>
-                    
+              <div class="article-work-content">
+                <header>
                   <p>Interactive Whiteboard Game</p>
                   <h3>Changing States</h3>
-                    
-                  </header>
-  
-                  <p>Interactive whiteboard game for Sellafield</p>
+                </header>
 
-                  </div>
-              
-                </article>
+                <p>Interactive whiteboard game for Sellafield</p>
+              </div>
+            </article>
 
-                <a href="http://resources.britishwool.org.uk/interactive/materials/" target="_blank" title="Try the Materials Activity - opens a new tab">
-                <article class="article-work grid fade-in" id="materials">
-  
-                  <img loading="lazy" class="lazy saturate-in" data-src="../img/content/png/bwmb_materials.png" alt="Materials Activity Screenshot" width="600" height="450">
-              
-                  
-                  <div class="article-work-content">
-  
+            <a
+              href="http://resources.britishwool.org.uk/interactive/materials/"
+              target="_blank"
+              title="Try the Materials Activity - opens a new tab"
+            >
+              <article class="article-work grid fade-in" id="materials">
+                <img
+                  loading="lazy"
+                  class="lazy saturate-in"
+                  data-src="../img/content/png/bwmb_materials.png"
+                  alt="Materials Activity Screenshot"
+                  width="600"
+                  height="450"
+                />
+
+                <div class="article-work-content">
                   <header>
-                    
-                  <p>Web Activity</p>
-                  <h3>Materials</h3>
-                    
+                    <p>Web Activity</p>
+                    <h3>Materials</h3>
                   </header>
-  
-                  <p>Interactive learning activity for <span class="nowrap">British Wool</span></p>
 
-                  </div>
-              
-                </article>
-                </a>
+                  <p>
+                    Interactive learning activity for
+                    <span class="nowrap">British Wool</span>
+                  </p>
+                </div>
+              </article>
+            </a>
 
+            <article class="article-work grid fade-in" id="countonme">
+              <img
+                loading="lazy"
+                class="lazy saturate-in"
+                data-src="../img/content/png/countonme.png"
+                alt="Count On Me Screenshot"
+                width="600"
+                height="450"
+              />
 
-                <article class="article-work grid fade-in" id="countonme">
-  
-                  <img loading="lazy" class="lazy saturate-in" data-src="../img/content/png/countonme.png" alt="Count On Me Screenshot" width="600" height="450">
-              
-                  
-                  <div class="article-work-content">
-  
-                  <header>
-                    
+              <div class="article-work-content">
+                <header>
                   <p>Web Activity</p>
                   <h3>Count On Me</h3>
-                    
-                  </header>
-  
-                  <p>Numeracy games supporting Children in Need for Boots</p>
+                </header>
 
-                  </div>
-              
-                </article>
+                <p>Numeracy games supporting Children in Need for Boots</p>
+              </div>
+            </article>
 
-                <a href="work/yeti" target="_blank" title="Play Is It Christmas Yeti? - requires keyboard - opens a new tab">
-                <article class="article-work grid fade-in" id="yetisnowman">
-  
-                  <img loading="lazy" class="lazy saturate-in" data-src="../img/content/png/yeti_snowman_game.png" alt="Yeti Game Screenshot" width="600" height="450">
-              
-                  
-                  <div class="article-work-content">
-  
+            <a
+              href="work/yeti"
+              target="_blank"
+              title="Play Is It Christmas Yeti? - requires keyboard - opens a new tab"
+            >
+              <article class="article-work grid fade-in" id="yetisnowman">
+                <img
+                  loading="lazy"
+                  class="lazy saturate-in"
+                  data-src="../img/content/png/yeti_snowman_game.png"
+                  alt="Yeti Game Screenshot"
+                  width="600"
+                  height="450"
+                />
+
+                <div class="article-work-content">
                   <header>
-                    
-                  <p>Web Game</p>
-                  <h3>Is it Christmas Yeti?</h3>
-                    
+                    <p>Web Game</p>
+                    <h3>Is it Christmas Yeti?</h3>
                   </header>
-  
+
                   <p>E-card game for Resources For Learning</p>
+                </div>
+              </article>
+            </a>
 
-                  </div>
-              
-                </article>
-                </a>
+            <article class="article-work grid fade-in" id="gogglebox">
+              <img
+                loading="lazy"
+                class="lazy saturate-in"
+                data-src="../img/content/png/gogglebox_home.png"
+                alt="Gogglebox Homepage"
+                width="600"
+                height="450"
+              />
 
-
-                <article class="article-work grid fade-in" id="gogglebox">
-  
-                  <img loading="lazy" class="lazy saturate-in" data-src="../img/content/png/gogglebox_home.png" alt="Gogglebox Homepage" width="600" height="450">
-              
-                  
-                  <div class="article-work-content">
-  
-                  <header>
-                    
+              <div class="article-work-content">
+                <header>
                   <p>Website</p>
                   <h3>Gogglebox Kids</h3>
-                    
-                  </header>
-  
-                  <p>Teaching Materials for Primary Schools</p>
+                </header>
 
-                  </div>
-              
-                </article>
-
-
+                <p>Teaching Materials for Primary Schools</p>
               </div>
-
-              
-
+            </article>
           </div>
-          <!-- end .container div -->
-        </section>
+        </div>
+        <!-- end .container div -->
+      </section>
 
-        
-
-        <!-- ============== about =================== -->
-        <section id="about" class="section-about">
-
-
-          <div class="container section-container grid">
-          
-
+      <!-- ============== about =================== -->
+      <section id="about" class="section-about">
+        <div class="container section-container grid">
           <header class="section-header">
             <h2>About</h2>
           </header>
 
           <article class="article-about grid fade-in">
-          
-          <div>
+            <div>
+              <p class="article-intro">
+                I'm a web developer with over twenty years of experience.
+              </p>
 
-            <p class="article-intro">I'm a web developer with over ten years of experience.</p>
-
-            <p class="article-body">My professional background is in online interactive educational activities, games and presentations.</p>
-            <p class="article-body">As primarily a front end developer, my interest is in user experience, accessibility and responsive web design, but most of all I just like making things work.</p>
-            
-          </div>
-
-          <!-- flex div to contain skills and education -->
-          <div class="article-about-skills-education flex">
-
-          <div class="article-about-skills">
-            <h3>Skills</h3>
-            <ul>
-              <li>HTML</li>
-              <li>CSS
-                <ul class="ul-nested">
-                  <li>Sass</li>
-                  <li>Bootstrap</li>
-                  <li>Tailwind</li>
-                </ul>
-              </li>
-              <li>JavaScript
-                <ul class="ul-nested">
-                  <li>React</li>
-                  <li>Vue</li>
-                  <li>jQuery</li>
-                </ul>
-              </li>
-              <li>PHP
-                <ul class="ul-nested">
-                  <li>WordPress</li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-
-          <div class="article-about-education">
-            <h3>Education</h3>
-            <h4>University of Bradford</h4>
-            <p>BSc (Hons), 2:1, Electronic Imaging &amp; Media Communications</p>
-            <h4>Blackpool &amp; The Fylde College</h4>
-            <p>BTEC Foundation Diploma in Art and Design</p>
-          </div>
-
-        </div>
-        <!-- end skills education flex div -->
-          
-
-
-        </article>
-
+              <p class="article-body">
+                My professional background is in online interactive educational
+                activities, games and presentations.
+              </p>
+              <p class="article-body">
+                As primarily a front end developer, my interest is in user
+                experience, accessibility and responsive web design, but most of
+                all I just like making things work.
+              </p>
             </div>
-            <!-- end .container div -->
 
-        </section>
+            <!-- flex div to contain skills and education -->
+            <div class="article-about-skills-education flex">
+              <div class="article-about-skills">
+                <h3>Skills</h3>
+                <ul>
+                  <li>HTML</li>
+                  <li>
+                    CSS
+                    <ul class="ul-nested">
+                      <li>Sass</li>
+                      <li>Bootstrap</li>
+                      <li>Tailwind</li>
+                    </ul>
+                  </li>
+                  <li>
+                    JavaScript
+                    <ul class="ul-nested">
+                      <li>React</li>
+                      <li>Vue</li>
+                      <li>jQuery</li>
+                    </ul>
+                  </li>
+                  <li>
+                    PHP
+                    <ul class="ul-nested">
+                      <li>WordPress</li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
 
-        
+              <div class="article-about-education">
+                <h3>Education</h3>
+                <h4>University of Bradford</h4>
+                <p>
+                  BSc (Hons), 2:1, Electronic Imaging &amp; Media Communications
+                </p>
+                <h4>Blackpool &amp; The Fylde College</h4>
+                <p>BTEC Foundation Diploma in Art and Design</p>
+              </div>
+            </div>
+            <!-- end skills education flex div -->
+          </article>
+        </div>
+        <!-- end .container div -->
+      </section>
 
+      <!-- ============== contact =================== -->
 
-    <!-- ============== contact =================== -->
-
-        <section id="contact" class="section-contact">
-
-
-          <div class="container section-container grid">
-
+      <section id="contact" class="section-contact">
+        <div class="container section-container grid">
           <header class="section-header">
-          <h2>Contact</h2>
+            <h2>Contact</h2>
           </header>
 
           <div class="contact-container grid fade-in">
-
-            
-            <form id="contact-form" name="contact-form" class="contact-form" action="#" method="post" novalidate>
-
-              
+            <form
+              id="contact-form"
+              name="contact-form"
+              class="contact-form"
+              action="#"
+              method="post"
+              novalidate
+            >
               <!-- ============== name ==============-->
-                
-                <label for="contact-name" class="contact-label" id="contact-name-label">Name
-                  
-                  <span class="sr-only" id="contact-name-error-hidden"></span>
-                </label><!--<br> -->
-                <input type="text" name="contact-name" id="contact-name" class="contact-input" value="" maxlength="50">
-                <div class="contact-error" id="contact-name-error" aria-hidden="true"><span class="contact-error-content"><!-- empty to start --></span></div>
 
-                <!-- ============== nickname ==============-->
-                <label for="contact-nickname" aria-hidden="true" class="user-cannot-see"> Nickname
-                  <input type="text" 
-                         name="contact-nickname" 
-                         id="contact-nickname" 
-                         class="user-cannot-see"
-                         autocomplete="off" 
-                         tabindex="-1">
-                </label>
+              <label
+                for="contact-name"
+                class="contact-label"
+                id="contact-name-label"
+                >Name
 
-                
-                <!-- ============== email ==============-->
-                
-                <label for="contact-email" class="contact-label" id="contact-email-label">
-                  Email <span class="label-required">(required)</span>
-                  <span class="sr-only" id="contact-email-error-hidden"></span>
-                </label>
-                <input type="email" name="contact-email" id="contact-email" class="contact-input" value="" maxlength="254" required>
-                
-                <div class="contact-error" id="contact-email-error" aria-hidden="true"><span class="contact-error-content"><!-- empty to start --></span></div>
-                
-                <!-- ============== message ==============-->
-                
-                <label for="contact-message" class="contact-label" id="contact-message-label">
-                  Message <span class="label-required">(required)</span>
-                  <span class="sr-only" id="contact-message-error-hidden"></span>
-                </label>
-                <textarea name="contact-message" id="contact-message" class="contact-input" rows="6" maxlength="6000" required></textarea>
-                <div class="contact-error" id="contact-message-error" aria-hidden="true"><span class="contact-error-content"><!-- empty to start --></span></div>
-                
-                
-                
-                <!-- ============== recaptcha ============== -->
+                <span
+                  class="sr-only"
+                  id="contact-name-error-hidden"
+                ></span> </label
+              ><!--<br> -->
+              <input
+                type="text"
+                name="contact-name"
+                id="contact-name"
+                class="contact-input"
+                value=""
+                maxlength="50"
+              />
+              <div
+                class="contact-error"
+                id="contact-name-error"
+                aria-hidden="true"
+              >
+                <span class="contact-error-content"
+                  ><!-- empty to start --></span
+                >
+              </div>
 
-                <!-- recaptcha explicit rendering -->
-                <div id="contact-recaptcha" class="g-recaptcha"></div>
-                <span class="sr-only" id="contact-recaptcha-error-hidden"></span>
-                <div class="contact-error" id="contact-recaptcha-error" aria-hidden="true"><span class="contact-error-content"><!-- empty to start --></span></div>
+              <!-- ============== nickname ==============-->
+              <label
+                for="contact-nickname"
+                aria-hidden="true"
+                class="user-cannot-see"
+              >
+                Nickname
+                <input
+                  type="text"
+                  name="contact-nickname"
+                  id="contact-nickname"
+                  class="user-cannot-see"
+                  autocomplete="off"
+                  tabindex="-1"
+                />
+              </label>
 
+              <!-- ============== email ==============-->
 
-                <!-- ============== submit ==============-->
-                
-                <button type="submit" class="contact-submit disabled" name="contact-submit" id="contact-submit">Send Message</button>
-                
-                
-                <div id="contact-success" class="contact-success" data-visible="false" aria-hidden="true">
-                  Thank you for your message
-                </div>
+              <label
+                for="contact-email"
+                class="contact-label"
+                id="contact-email-label"
+              >
+                Email <span class="label-required">(required)</span>
+                <span class="sr-only" id="contact-email-error-hidden"></span>
+              </label>
+              <input
+                type="email"
+                name="contact-email"
+                id="contact-email"
+                class="contact-input"
+                value=""
+                maxlength="254"
+                required
+              />
 
+              <div
+                class="contact-error"
+                id="contact-email-error"
+                aria-hidden="true"
+              >
+                <span class="contact-error-content"
+                  ><!-- empty to start --></span
+                >
+              </div>
+
+              <!-- ============== message ==============-->
+
+              <label
+                for="contact-message"
+                class="contact-label"
+                id="contact-message-label"
+              >
+                Message <span class="label-required">(required)</span>
+                <span class="sr-only" id="contact-message-error-hidden"></span>
+              </label>
+              <textarea
+                name="contact-message"
+                id="contact-message"
+                class="contact-input"
+                rows="6"
+                maxlength="6000"
+                required
+              ></textarea>
+              <div
+                class="contact-error"
+                id="contact-message-error"
+                aria-hidden="true"
+              >
+                <span class="contact-error-content"
+                  ><!-- empty to start --></span
+                >
+              </div>
+
+              <!-- ============== recaptcha ============== -->
+
+              <!-- recaptcha explicit rendering -->
+              <div id="contact-recaptcha" class="g-recaptcha"></div>
+              <span class="sr-only" id="contact-recaptcha-error-hidden"></span>
+              <div
+                class="contact-error"
+                id="contact-recaptcha-error"
+                aria-hidden="true"
+              >
+                <span class="contact-error-content"
+                  ><!-- empty to start --></span
+                >
+              </div>
+
+              <!-- ============== submit ==============-->
+
+              <button
+                type="submit"
+                class="contact-submit disabled"
+                name="contact-submit"
+                id="contact-submit"
+              >
+                Send Message
+              </button>
+
+              <div
+                id="contact-success"
+                class="contact-success"
+                data-visible="false"
+                aria-hidden="true"
+              >
+                Thank you for your message
+              </div>
             </form>
-
-
           </div>
           <!-- end contact-container grid div -->
-
         </div>
         <!-- end .container div -->
-
-        </section>
-
-        
-
-
-
-
+      </section>
     </main>
-<!-- ============== end main =================== -->
+    <!-- ============== end main =================== -->
 
-
-
-
-
-
-<!-- ============== footer =================== -->
+    <!-- ============== footer =================== -->
     <footer>
-
-
       <div class="container footer-container flex">
+        <div class="copyright">
+          &copy; Guy Blanchfield <span class="copyright-year">2525</span>
+        </div>
 
-        <div class="copyright">&copy; Guy Blanchfield <span class="copyright-year">2525</span></div>
-
-        <div class="madebyme"><a class="madebyme-link" href="https://github.com/guy-blanchfield/gb-website" title="View on GitHub">Made by Me</a></div>
-
-
+        <div class="madebyme">
+          <a
+            class="madebyme-link"
+            href="https://github.com/guy-blanchfield/gb-website"
+            title="View on GitHub"
+            >Made by Me</a
+          >
+        </div>
       </div>
-
-
     </footer>
-<!-- ============== end footer =================== -->
-
-</body>
+    <!-- ============== end footer =================== -->
+  </body>
 </html>
